@@ -1,7 +1,9 @@
 # ScoutingApp
 
-Team 2638's Scouting App for the 2019 FRC Season
+Team 2638's Apocalypse Scouting App for the 2020 FRC Season.
 
-## [Read about our struggles](Struggles.md)
+New and improved! A Scouting App so shiny if you look at it for too long it'll stare into your soul.
+
+## [Scouting App 2019](https://github.com/PatheticMustan/ScoutingApp2020)
 
 ## [Usage](Usage.md)
