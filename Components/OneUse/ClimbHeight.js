@@ -3,7 +3,7 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	Pressable,
+	TouchableWithoutFeedback,
 	Image
 } from "react-native";
 
@@ -33,7 +33,7 @@ export default function ClimbHeight(props) {
 		}}>
 			{
 				data.map((v, i) => 
-					<Pressable
+					<TouchableWithoutFeedback
 						key={data[i][0]}
 						onPress={() => {
 							dispatch(setKeyPair([props.id, i]));
@@ -46,7 +46,7 @@ export default function ClimbHeight(props) {
 							<Image source={data[i][1]} style={styles.image} />
 							<Text style={{textAlign: "center"}}>{data[i][0]}</Text>
 						</View>
-					</Pressable>
+					</TouchableWithoutFeedback>
 				)
 			}
 		</View>

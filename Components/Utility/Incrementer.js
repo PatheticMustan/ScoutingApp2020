@@ -3,7 +3,7 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	Pressable
+	TouchableOpacity
 } from "react-native";
 
 import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
@@ -23,7 +23,7 @@ export default function Incrementer(props) {
 
 	return (
 		<View style={styles.container}>
-			<Pressable onPress={() => {
+			<TouchableOpacity onPress={() => {
 				// minimum value is 0
 				if (value - 1 >= 0) {
 					dispatch(setKeyPair([props.id, value - 1]));
@@ -33,11 +33,11 @@ export default function Incrementer(props) {
 					{ /** I'm so lonely */}
 					<FontAwesome name="minus" size={30} color={ScoutingColors.skyBlue}/>
 				</View>
-			</Pressable>
+			</TouchableOpacity>
 			
 			<Text style = {{fontSize: 30}}>{value}{props.max? `/${props.max}` : ""}</Text>
 
-			<Pressable onPress={() => {
+			<TouchableOpacity onPress={() => {
 				// first make sure max value exists, then do comparison
 				if (!props.max || value+1 <= props.max) {
 					dispatch(setKeyPair([props.id, value + 1]));
@@ -46,7 +46,7 @@ export default function Incrementer(props) {
 				<View style = {styles.iconContainer}>
 					<FontAwesome name="plus" size={30} color={ScoutingColors.skyBlue}/>
 				</View>
-			</Pressable>
+			</TouchableOpacity>
 		</View>
 	);
 }

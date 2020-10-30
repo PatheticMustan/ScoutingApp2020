@@ -3,7 +3,7 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	Pressable
+	TouchableWithoutFeedback
 } from "react-native";
 
 import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
@@ -20,7 +20,7 @@ export default function BoolButton(props) {
 	const value = kpv.find(v => v[0] === props.id)[1];
 
 	return (
-		<Pressable onPress={() => {
+		<TouchableWithoutFeedback onPress={() => {
 			// if the press event exists, run it
 			props.press && props.press();
 			dispatch(setKeyPair([props.id, !value]));
@@ -34,7 +34,7 @@ export default function BoolButton(props) {
 			]}>
 				<Text style={styles.textCenter}>{props.children}</Text>
 			</View>
-		</Pressable>
+		</TouchableWithoutFeedback>
 	);
 }
 
