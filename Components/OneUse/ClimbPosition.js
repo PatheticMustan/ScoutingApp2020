@@ -3,7 +3,7 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	TouchableWithoutFeedback,
+	Pressable,
 	ImageBackground
 } from "react-native";
 import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
@@ -34,7 +34,7 @@ export default function ClimbPosition(props) {
 					{
 						data.map((v, i) =>
 							<View style={{flex: data[i][1]}} key={"ClimbPositionView" + i}>
-								<TouchableWithoutFeedback
+								<Pressable
 									key={"ClimbPositionButton" + i}
 									onPress={() => {
 										const r = i;
@@ -53,7 +53,7 @@ export default function ClimbPosition(props) {
 									}}>
 										<Text style={{textAlign: "center"}}>{data[i][0]}</Text>
 									</View>
-								</TouchableWithoutFeedback>
+								</Pressable>
 							</View>
 						)
 					}

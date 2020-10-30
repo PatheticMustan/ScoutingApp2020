@@ -3,7 +3,7 @@ import {
 	StyleSheet,
 	View,
 	FlatList,
-	TouchableOpacity,
+	Pressable,
 	Text
 } from "react-native";
 
@@ -32,7 +32,7 @@ export default function PastMatches(props) {
 			data={matches}
 			renderItem={(data) => {
 				return (
-					<TouchableOpacity onPress={() => {
+					<Pressable onPress={() => {
 						props.navigation.navigate("Scout");
 
 						// the VERY VERY lazy solution
@@ -43,7 +43,7 @@ export default function PastMatches(props) {
 								{["Qualification", "Quarterfinal", "Semifinal"][find(data.item, "MatchType")]} #{find(data.item, "MatchNumber")} (Team {find(data.item, "TeamNumber")})
 							</Text>
 						</View>
-					</TouchableOpacity>
+					</Pressable>
 				);
 			}}
 			ListEmptyComponent={() => {
