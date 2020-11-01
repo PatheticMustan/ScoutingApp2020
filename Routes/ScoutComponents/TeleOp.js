@@ -25,63 +25,63 @@ export default function TeleOp() {
 	// get value from store
 	const kpv = useSelector(selectData);
 	const selectedTeam = kpv.find(v => v[0] === arenaID)[1];
-	
+
 	return (
 		<View style={styles.container}>
-			<Text style={{textAlign: "center", fontSize: 35, fontWeight: "bold"}}>Tele-Op</Text>
+			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Tele-Op</Text>
 			<View style={styles.teleOpContainer}>
 
 				<Arena>
-					<View style = {{flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam==1? "column-reverse" : "column"}}>
-						<View style = {{flex: 1, justifyContent: "center"}}>
+					<View style={{ flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam == 1 ? "column-reverse" : "column" }}>
+						<View style={{ flex: 1, justifyContent: "center" }}>
 							<BoolButton id="PlaysDefense" bgc="lime" >Plays Defense</BoolButton>
 						</View>
-						<View style = {{flex: 1, justifyContent: "center"}}>
+						<View style={{ flex: 1, justifyContent: "center" }}>
 							<NumButton id="BallsPickedUpFromLoadingStation" height={80}>Balls Picked Up from Loading Station</NumButton>
 						</View>
 					</View>
 
-					<View style = {{flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam==1? "column-reverse" : "column"}}>
-						<View style= {{flex: 9}} />
+					<View style={{ flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam == 1 ? "column-reverse" : "column" }}>
+						<View style={{ flex: 9 }} />
 						<BoolButton id="Rotation" bgc="lime">Rotation</BoolButton>
 						<BoolButton id="Color" bgc="lime">Color</BoolButton>
 					</View>
 
-					<View style = {{flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam==1? "column-reverse" : "column"}}>
-						<View style = {{flex: 3}}>
+					<View style={{ flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam == 1 ? "column-reverse" : "column" }}>
+						<View style={{ flex: 3 }}>
 						</View>
-						<View style = {{flex: 1}}>
+						<View style={{ flex: 1 }}>
 							<NumButton id="BallsPickedUpFromFloor" height={80}>Balls Picked Up from Floor</NumButton>
 						</View>
-						<View style = {{flex: 1.5, justifyContent: "center"}}>
+						<View style={{ flex: 1.5, justifyContent: "center" }}>
 							<BoolButton id="FitsUnderTrench" bgc="lime">Fits Under Trench</BoolButton>
 						</View>
 					</View>
 
-					<View style = {{flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam==1? "column-reverse" : "column"}}>
-						<View style = {{flex: 0.4}} />
-						<View style = {{flex: 2.4}}>
+					<View style={{ flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam == 1 ? "column-reverse" : "column" }}>
+						<View style={{ flex: 0.4 }} />
+						<View style={{ flex: 2.4 }}>
 							<Text
-								style= {{fontSize: 12, color: "white", width: 120, textAlign: "center"}}
-								margin = {0}
+								style={{ fontSize: 12, color: "white", width: 120, textAlign: "center" }}
+								margin={0}
 							>
 								Where can they shoot from?
 							</Text>
-							
+
 							<BoolButton id="TargetZone" bgc="lime">Target Zone</BoolButton>
 							<BoolButton id="TrenchZone" bgc="lime">Trench Zone</BoolButton>
 							<BoolButton id="Other" bgc="lime">Other</BoolButton>
 						</View>
-						<View style = {{flex: 4}}></View>
+						<View style={{ flex: 4 }}></View>
 					</View>
-					
-					<View style = {{flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam==1? "column-reverse" : "column"}}>
-						<View style = {{flex: 2}}></View>
 
-						<View style = {{flex: 2}}>
+					<View style={{ flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam == 1 ? "column-reverse" : "column" }}>
+						<View style={{ flex: 2 }}></View>
+
+						<View style={{ flex: 2 }}>
 							<Text
-								style= {{fontSize: 12, color: "white", width: 120, textAlign: "center"}}
-								margin = {0}
+								style={{ fontSize: 12, color: "white", width: 120, textAlign: "center" }}
+								margin={0}
 							>
 								Balls Scored
 							</Text>
@@ -95,13 +95,13 @@ export default function TeleOp() {
 
 				</Arena>
 
-				<Text style = {{textAlign: "center", fontSize: 20, fontWeight: "bold"}}>Comments</Text>
-				<Text style = {{textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10}}>
+				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
+				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>
 					Add any comments that you feel are useful. Does the robot get any penalties? Does the robot cycle
 					efficiently? Do they struggle with picking up balls or shooting? Do they play defense, and if so,
 					how? Where do they usually shoot from? Anything else that shows evidence of good/poor performance?
 				</Text>
-				<View style = {{paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20}}>
+				<View style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>
 					<CustomTextBox
 						multi={true}
 						id="TeleopComments"
@@ -115,7 +115,7 @@ export default function TeleOp() {
 			</View>
 		</View>
 	);
-		
+
 }
 
 const styles = StyleSheet.create({

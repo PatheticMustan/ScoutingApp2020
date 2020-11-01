@@ -16,11 +16,11 @@ export default function About() {
 
 	return (
 		<View style={styles.flex}>
-			<View style={{flex: 1}}>
-				<Header/>
+			<View style={{ flex: 1 }}>
+				<Header />
 			</View>
-			
-			<View style={{flex: 7}}>
+
+			<View style={{ flex: 7 }}>
 				<ScrollView>
 					<View style={styles.credits}>
 						<Image
@@ -32,7 +32,7 @@ export default function About() {
 						{text("Version 3.0 3/6/2020")}
 
 						{spacer}
-							
+
 						{title("UI Design and Concept by")}
 						{person("App Designer", "Reid Fleishman")}
 
@@ -59,7 +59,7 @@ export default function About() {
 						{text(<Text style={styles.italic}>And all of our amazing mentors!</Text>)}
 
 						{spacer}
-							
+
 						{text("Questions or Comments? Please email reidfleishman5@gmail.com")}
 
 						{title("© 2020 Rebel Robotics")}
@@ -77,15 +77,15 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		paddingBottom: 50
 	},
-	flex: {flex: 1},
+	flex: { flex: 1 },
 	image: {
 		borderRadius: 10,
 		height: 350,
 		margin: 10,
 		width: 350
 	},
-	italic: {fontStyle: "italic"},
-	text: {fontSize: 16},
+	italic: { fontStyle: "italic" },
+	text: { fontSize: 16 },
 	title: {
 		fontSize: 16,
 		fontWeight: "bold",

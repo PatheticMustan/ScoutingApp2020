@@ -29,11 +29,11 @@ export default function ClimbPosition(props) {
 
 	return (
 		<View>
-			<ImageBackground source = {require("../../Assets/ClimbPosition.png")} style = {{width: 600, height: 300}}>
+			<ImageBackground source={require("../../Assets/ClimbPosition.png")} style={{ width: 600, height: 300 }}>
 				<View style={styles.container}>
 					{
 						data.map((v, i) =>
-							<View style={{flex: data[i][1]}} key={"ClimbPositionView" + i}>
+							<View style={{ flex: data[i][1] }} key={"ClimbPositionView" + i}>
 								<Pressable
 									key={"ClimbPositionButton" + i}
 									onPress={() => {
@@ -47,11 +47,11 @@ export default function ClimbPosition(props) {
 										borderRadius: 10,
 										borderWidth: StyleSheet.hairlineWidth,
 										margin: props.margin || 10,
-										width: (props.width? props.width : 100),
+										width: (props.width ? props.width : 100),
 										height: 40,
-										backgroundColor: (selectedIndex === i? props.bgc : ScoutingColors.white)
+										backgroundColor: (selectedIndex === i ? props.bgc : ScoutingColors.white)
 									}}>
-										<Text style={{textAlign: "center"}}>{data[i][0]}</Text>
+										<Text style={{ textAlign: "center" }}>{data[i][0]}</Text>
 									</View>
 								</Pressable>
 							</View>

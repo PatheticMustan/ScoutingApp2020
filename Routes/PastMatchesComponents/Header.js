@@ -52,18 +52,18 @@ export default function Header() {
 		const output = kpvToCsv(matches);
 		console.log(output);
 
-		FileSystem.writeAsStringAsync(FileSystem.documentDirectory+path, output, { encoding: FileSystem.EncodingType.UTF8 });
+		FileSystem.writeAsStringAsync(FileSystem.documentDirectory + path, output, { encoding: FileSystem.EncodingType.UTF8 });
 		// share the new csv file we just made
-		Sharing.shareAsync(FileSystem.documentDirectory+path);
+		Sharing.shareAsync(FileSystem.documentDirectory + path);
 	};
 
 	return (
 		<View style={[
 			styles.flex,
-			{backgroundColor: selectedTeam==1? ScoutingColors.red : ScoutingColors.lightBlue}
+			{ backgroundColor: selectedTeam == 1 ? ScoutingColors.red : ScoutingColors.lightBlue }
 		]}>
 			<Text style={styles.headerText}>2020 - Infinite Recharge{"\n"}</Text>
-			
+
 			<View style={styles.linkContainer}>
 				<Link color="red" onPress={clickResetMatches}>Reset All Matches</Link>
 
@@ -74,7 +74,7 @@ export default function Header() {
 }
 
 const styles = StyleSheet.create({
-	flex: {flex: 1},
+	flex: { flex: 1 },
 	headerText: {
 		flex: 1,
 		fontSize: 20,

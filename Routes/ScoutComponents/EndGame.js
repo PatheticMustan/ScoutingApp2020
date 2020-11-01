@@ -26,13 +26,13 @@ export default function Endgame() {
 
 	if (value === 1) {
 		return (
-			<View style = {styles.container}>
-				<Text style = {{textAlign: "center", fontSize: 35, fontWeight: "bold"}}>Endgame</Text>
-					
-				<View style = {styles.endgameContainer}>
+			<View style={styles.container}>
+				<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Endgame</Text>
+
+				<View style={styles.endgameContainer}>
 					<NumButton id="BallsScored" width={120}>Balls Scored</NumButton>
 
-					<View style={{margin: 20}}>
+					<View style={{ margin: 20 }}>
 						<RadioButton
 							id="EndgameType"
 							data={["Park", "Climb", "None"]}
@@ -46,28 +46,28 @@ export default function Endgame() {
 						/>
 					</View>
 
-					<View style={{flex: 1}}>
-						<Timer/>
+					<View style={{ flex: 1 }}>
+						<Timer />
 					</View>
-					
-					<View style={{paddingTop: 20, paddingBottom: 10}}>
-						<Text style={{fontSize: 20, fontWeight: "bold"}}>Initial Climb Height</Text>
+
+					<View style={{ paddingTop: 20, paddingBottom: 10 }}>
+						<Text style={{ fontSize: 20, fontWeight: "bold" }}>Initial Climb Height</Text>
 					</View>
-					
+
 					<View style={styles.climbContainer}>
-						<ClimbHeight id="ClimbHeight" bgc={"orange"}/>
-						
+						<ClimbHeight id="ClimbHeight" bgc={"orange"} />
+
 
 
 						<View style={styles.climbPosition}>
-							<Text style={{fontWeight: "bold", fontSize: 20}}>Climb Position</Text>
-							
-							<ClimbPosition id="ClimbPosition" bgc={"orange"}/>
+							<Text style={{ fontWeight: "bold", fontSize: 20 }}>Climb Position</Text>
+
+							<ClimbPosition id="ClimbPosition" bgc={"orange"} />
 						</View>
 					</View>
-					<View style = {styles.climbComments}>
-						<Text style={{fontWeight: "bold", fontSize: 20}}>Comments</Text>
-						<Text style={{fontSize: 12, textAlign: "center"}}>
+					<View style={styles.climbComments}>
+						<Text style={{ fontWeight: "bold", fontSize: 20 }}>Comments</Text>
+						<Text style={{ fontSize: 12, textAlign: "center" }}>
 							Add any comments that you feel are useful. Do they attempt to climb but fall?
 							Do they get in the way of other robots? Do they swing a lot on the climb? Are they able to balance the rung?
 							Are they able to adjust their climb position? Do they slide on the run? Anything else that shows evidence of
@@ -88,13 +88,13 @@ export default function Endgame() {
 		);
 	} else {
 		return (
-			<View style = {styles.container}>
-				<Text style = {{textAlign: "center", fontSize: 35, fontWeight: "bold"}}>Endgame</Text>
+			<View style={styles.container}>
+				<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Endgame</Text>
 
-				<View style = {styles.endgameContainer}>
+				<View style={styles.endgameContainer}>
 					<NumButton id="BallsScored" width={120}>Balls Scored</NumButton>
 
-					<View style={{margin: 20}}>
+					<View style={{ margin: 20 }}>
 						<RadioButton
 							id="EndgameType"
 							data={["Park", "Climb", "None"]}
@@ -107,10 +107,10 @@ export default function Endgame() {
 							}}
 						/>
 					</View>
-					
-					<View style = {styles.climbComments}>
-						<Text style={{fontWeight: "bold", fontSize: 20}}>Comments</Text>
-						<Text style={{fontSize: 12, textAlign: "center"}}>
+
+					<View style={styles.climbComments}>
+						<Text style={{ fontWeight: "bold", fontSize: 20 }}>Comments</Text>
+						<Text style={{ fontSize: 12, textAlign: "center" }}>
 							Add any comments that you feel are useful. Do they attempt to climb but fall?
 							Do they get in the way of other robots? Do they swing a lot on the climb? Are they able to balance the rung?
 							Are they able to adjust their climb position? Do they slide on the run? Anything else that shows evidence of
@@ -132,7 +132,7 @@ export default function Endgame() {
 	}
 }
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
 	climbComments: {
 		flex: 1,
 		flexDirection: "column",

@@ -14,7 +14,7 @@ import ScoutingColors from "../../Config/ScoutingColors";
 
 export default function ClimbHeight(props) {
 	const dispatch = useDispatch();
-	
+
 	// set default value
 	dispatch(setDefault([props.id, 0]));
 	// get value from store
@@ -22,9 +22,9 @@ export default function ClimbHeight(props) {
 	const selectedIndex = kpv.find(v => v[0] === props.id)[1];
 
 	const data = [
-		["Low",     require("../../Assets/EndLow.png")],
+		["Low", require("../../Assets/EndLow.png")],
 		["Leveled", require("../../Assets/EndLevel.png")],
-		["High",    require("../../Assets/EndHigh.png")]
+		["High", require("../../Assets/EndHigh.png")]
 	];
 
 	return (
@@ -34,7 +34,7 @@ export default function ClimbHeight(props) {
 			justifyContent: "space-around"
 		}}>
 			{
-				data.map((v, i) => 
+				data.map((v, i) =>
 					<Pressable
 						key={data[i][0]}
 						onPress={() => {
@@ -46,7 +46,7 @@ export default function ClimbHeight(props) {
 							{ backgroundColor: (selectedIndex === i ? props.bgc : ScoutingColors.white) }
 						]}>
 							<Image source={data[i][1]} style={styles.image} />
-							<Text style={{textAlign: "center"}}>{data[i][0]}</Text>
+							<Text style={{ textAlign: "center" }}>{data[i][0]}</Text>
 						</View>
 					</Pressable>
 				)

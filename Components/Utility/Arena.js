@@ -23,12 +23,12 @@ export default function Arena(props) {
 			<ImageBackground
 				source={require("../../Assets/2020Field.png")}
 				style={{
-					flexDirection: selectedTeam==0? "row" : "row-reverse",
+					flexDirection: selectedTeam == 0 ? "row" : "row-reverse",
 					height: 453,
 					marginTop: 20,
 					width: 900
 				}}
-				imageStyle={{borderRadius: 10}}
+				imageStyle={{ borderRadius: 10 }}
 			>
 				{props.children}
 			</ImageBackground>

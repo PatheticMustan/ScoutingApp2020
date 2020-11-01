@@ -59,7 +59,7 @@ export const dataSlice = createSlice({
 			 * "I wish that I could wake up with Amnesia"
 			 * Well loverboy, today's your lucky day
 			 **/
-			
+
 			// if you couldn't tell, this erases everything but info
 
 			state.keyPairValues = state.keyPairValues.filter(v =>

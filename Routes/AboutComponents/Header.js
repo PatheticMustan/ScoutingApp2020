@@ -24,10 +24,10 @@ export default function Header() {
 	return (
 		<View style={[
 			styles.flex,
-			{backgroundColor: selectedTeam==1? ScoutingColors.red : ScoutingColors.lightBlue}
+			{ backgroundColor: selectedTeam == 1 ? ScoutingColors.red : ScoutingColors.lightBlue }
 		]}>
 			<Text style={styles.headerText}>2020 - Infinite Recharge{"\n"}</Text>
-			
+
 			<View style={styles.linkContainer}>
 				<Link>About</Link>
 			</View>
@@ -36,7 +36,7 @@ export default function Header() {
 }
 
 const styles = StyleSheet.create({
-	flex: {flex: 1},
+	flex: { flex: 1 },
 	headerText: {
 		flex: 1,
 		fontSize: 20,

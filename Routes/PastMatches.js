@@ -23,7 +23,7 @@ export default function PastMatches(props) {
 	const matches = useSelector(selectData);
 
 	const find = (pmm, id) => pmm[1].find(v => v[0] === id)[1];
-	
+
 	// matches = storage
 	// parse matches
 	// if new match add to state
@@ -49,12 +49,12 @@ export default function PastMatches(props) {
 			}}
 			ListEmptyComponent={() => {
 				return (
-					<View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-						<Text style={{margin: 100,fontSize: 21}}>There are no items!</Text>
+					<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+						<Text style={{ margin: 100, fontSize: 21 }}>There are no items!</Text>
 					</View>
 				);
 			}}
-			ListHeaderComponent={<Header/>}
+			ListHeaderComponent={<Header />}
 			keyExtractor={data => {
 				// very lazy solution but whatever, I'm a pretty lazy person
 				return data.toString();

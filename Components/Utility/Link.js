@@ -9,7 +9,7 @@ export default function Link(props) {
 	return (
 		<View style={styles.container}>
 			<Text
-				style={{color: props.color, fontSize: 17}}
+				style={{ color: props.color, fontSize: 17 }}
 				onPress={props.onPress}
 			>
 				{props.children}

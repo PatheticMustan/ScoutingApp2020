@@ -42,7 +42,7 @@ export default function CustomTextBox(props) {
 			 * So we can kinda subtract the two. Now, we can check if loadMatch happened!
 			 * We can check this with (watchdog !== reduxText)
 			 **/
-			if (watchdog !== reduxText)  {
+			if (watchdog !== reduxText) {
 				setText(reduxText);
 			} else {
 				if (reduxText !== text) {
@@ -51,7 +51,7 @@ export default function CustomTextBox(props) {
 				}
 			}
 		}, 500);
-		
+
 		// basically componentWillUnmount but this time it's for React hooks
 		return () => clearInterval(interval);
 	}, [reduxText, text]);
@@ -64,7 +64,7 @@ export default function CustomTextBox(props) {
 			<TextInput
 				keyboardType={props.keyboardType}
 				multiline={props.multi}
-				numberOfLines={props.multi? props.lines : 1}
+				numberOfLines={props.multi ? props.lines : 1}
 				editable
 				placeholder={props.placeholder || ""}
 				value={text}
@@ -74,7 +74,7 @@ export default function CustomTextBox(props) {
 					backgroundColor: (props.backgroundColor ? props.backgroundColor : ScoutingColors.white),
 					borderColor: ScoutingColors.doveGray,
 					borderWidth: StyleSheet.hairlineWidth,
-					borderRadius: (props.borderRadius? props.borderRadius : props.height / 5)
+					borderRadius: (props.borderRadius ? props.borderRadius : props.height / 5)
 				}}
 				{...props.options}
 				onChangeText={text => {

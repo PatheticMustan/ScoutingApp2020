@@ -18,10 +18,10 @@ export default function kpvToCsv(matches) {
 		vf: kpv => find(kpv, "MatchNumber")
 	}, {
 		name: "Fits Under Trench?",
-		vf: kpv => find(kpv, "FitsUnderTrench")? "Yes" : "No"
+		vf: kpv => find(kpv, "FitsUnderTrench") ? "Yes" : "No"
 	}, {
 		name: "Plays Defense?",
-		vf: kpv => find(kpv, "PlaysDefense")? "Yes" : "No"
+		vf: kpv => find(kpv, "PlaysDefense") ? "Yes" : "No"
 	}, {
 		name: "Penalties",
 		vf: kpv => {
@@ -42,7 +42,7 @@ export default function kpvToCsv(matches) {
 		vf: kpv => find(kpv, "LinePosition")
 	}, {
 		name: "Crosses Initiation Line?",
-		vf: kpv => find(kpv, "CrossesInitiationLine")? "Yes" : "No"
+		vf: kpv => find(kpv, "CrossesInitiationLine") ? "Yes" : "No"
 	}, {
 		name: "Auto Low",
 		vf: kpv => find(kpv, "AutoLow")
@@ -83,10 +83,10 @@ export default function kpvToCsv(matches) {
 			.join(", ") // make it look nice
 	}, {
 		name: "Rotation",
-		vf: kpv => find(kpv, "Rotation")? "Yes" : "No"
+		vf: kpv => find(kpv, "Rotation") ? "Yes" : "No"
 	}, {
 		name: "Color",
-		vf: kpv => find(kpv, "Color")? "Yes" : "No"
+		vf: kpv => find(kpv, "Color") ? "Yes" : "No"
 	}, {
 		name: "Teleop Comments",
 		vf: kpv => find(kpv, "TeleopComments")
@@ -98,13 +98,13 @@ export default function kpvToCsv(matches) {
 		vf: kpv => find(kpv, "BallsScored")
 	}, {
 		name: "Climb Height",
-		vf: kpv => find(kpv, "EndgameType") === 1? find(kpv, "ClimbHeight") : ""
+		vf: kpv => find(kpv, "EndgameType") === 1 ? find(kpv, "ClimbHeight") : ""
 	}, {
 		name: "Climb Position",
-		vf: kpv => find(kpv, "EndgameType") === 1? find(kpv, "ClimbPosition") : ""
+		vf: kpv => find(kpv, "EndgameType") === 1 ? find(kpv, "ClimbPosition") : ""
 	}, {
 		name: "Time",
-		vf: kpv => find(kpv, "EndgameType") === 1? find(kpv, "Time") : ""
+		vf: kpv => find(kpv, "EndgameType") === 1 ? find(kpv, "Time") : ""
 	}, {
 		name: "Endgame Comments",
 		vf: kpv => find(kpv, "EndgameComments")
@@ -141,7 +141,7 @@ export default function kpvToCsv(matches) {
 
 		csv += row.join(",") + "\r\n";
 	});
-	
+
 
 	return csv;
 }

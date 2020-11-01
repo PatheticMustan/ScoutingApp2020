@@ -28,47 +28,47 @@ export default function Autonomous() {
 
 	return (
 		<View style={styles.container}>
-			<Text style={{textAlign: "center", fontSize: 35, fontWeight: "bold"}}>Autonomous</Text>
+			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Autonomous</Text>
 			<View style={styles.autonomousContainer}>
 				<Arena>
-					<View style = {{flex: 4, justifyContent: "center"}}></View>
-					<View style = {{
+					<View style={{ flex: 4, justifyContent: "center" }}></View>
+					<View style={{
 						flex: 1,
 						justifyContent: "space-between",
-						flexDirection: selectedTeam==1? "column-reverse" : "column"
+						flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
 					}}>
-						<View style = {{flex: 4}}/>
-						<View style = {{flex: 1, alignItems: "center"}}>
+						<View style={{ flex: 4 }} />
+						<View style={{ flex: 1, alignItems: "center" }}>
 							<NumButton id="BallsPickedUp" width={160}>Balls Picked Up</NumButton>
 						</View>
-						<View style = {{flex: 0.6}}/>
+						<View style={{ flex: 0.6 }} />
 					</View>
 
-					<View style = {{
+					<View style={{
 						flex: 1,
 						justifyContent: "space-between",
 						alignItems: "center",
-						flexDirection: selectedTeam==1? "column-reverse" : "column"
+						flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
 					}}>
-						<View style = {{flex: 0.25, justifyContent: "space-between", alignSelf: "center"}}>
+						<View style={{ flex: 0.25, justifyContent: "space-between", alignSelf: "center" }}>
 							<BoolButton id="CrossesInitiationLine" bgc="lime" width={160}>Crosses Initation Line</BoolButton>
 						</View>
-						<RadioButton id="LinePosition" data={["Left", "Middle", "Right"]} bgc={"orange"} options = {{
+						<RadioButton id="LinePosition" data={["Left", "Middle", "Right"]} bgc={"orange"} options={{
 							flex: 1,
 							justifyContent: "space-between",
-							flexDirection: selectedTeam==1? "column-reverse" : "column"
-						}}/>
-						<View style = {{flex: 0.25}}/>
+							flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
+						}} />
+						<View style={{ flex: 0.25 }} />
 					</View>
 
 					<View style={{
 						flex: 1,
 						justifyContent: "center",
-						flexDirection: selectedTeam==1? "column-reverse" : "column"
+						flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
 					}}>
 						<Text
 							style={{ fontSize: 12, color: ScoutingColors.white, width: 120, textAlign: "center" }}
-							margin = {0}
+							margin={0}
 						>
 							Balls Scored
 						</Text>
@@ -80,13 +80,13 @@ export default function Autonomous() {
 					</View>
 				</Arena>
 
-				<Text style={{textAlign: "center", fontSize: 20, fontWeight: "bold"}}>Comments</Text>
-				<Text style = {{textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10}}>
+				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
+				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>
 					Add any comments that you feel are useful. Does the robot get any penalties? Does the robot cycle
 					efficiently? Do they struggle with picking up balls or shooting? Do they play defense, and if so,
 					how? Where do they usually shoot from? Anything else that shows evidence of good/poor performance?
 				</Text>
-				<View style={{padding: 20}}>
+				<View style={{ padding: 20 }}>
 					<CustomTextBox
 						multi={true}
 						id="AutonomousComments"
