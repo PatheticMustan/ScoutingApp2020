@@ -1,15 +1,11 @@
 /* eslint-disable react/display-name */
 import * as React from "react";
-import { AsyncStorage } from "react-native";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
-
-import {
-	Entypo,
-	Octicons,
-	Ionicons 
-} from "react-native-vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Entypo, Octicons, Ionicons } from "react-native-vector-icons";
 
 import store from "./Redux/Store.js";
 import { Provider, useDispatch } from "react-redux";

@@ -4,9 +4,9 @@ import {
 	Text,
 	View,
 	Alert,
-	AsyncStorage
 } from "react-native";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system";
 

@@ -2,10 +2,10 @@ import React from "react";
 import {
 	StyleSheet,
 	Text,
-	View,
-	AsyncStorage
+	View
 } from "react-native";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Sharing from "expo-sharing";
 import Link from "../../Components/Utility/Link.js";
 
