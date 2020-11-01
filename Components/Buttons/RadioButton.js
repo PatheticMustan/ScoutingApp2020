@@ -3,7 +3,7 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	TouchableWithoutFeedback
+	Pressable
 } from "react-native";
 
 import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
@@ -24,7 +24,7 @@ export default function RadioButton(props) {
 		<View style={{...props.options}}>
 			{
 				props.data.map((v, i) =>
-					<TouchableWithoutFeedback
+					<Pressable
 						key={v}
 						onPress={() => {
 							dispatch(setKeyPair([props.id, i]));
@@ -49,7 +49,7 @@ export default function RadioButton(props) {
 						}}>
 							<Text style={{textAlign: "center"}}>{v}</Text>
 						</View>
-					</TouchableWithoutFeedback>
+					</Pressable>
 				)
 			}
 		</View>

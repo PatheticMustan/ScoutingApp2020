@@ -3,7 +3,7 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	TouchableWithoutFeedback
+	Pressable
 } from "react-native";
 
 import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
@@ -19,7 +19,7 @@ export default function NumButton(props) {
 	const value = kpv.find(v => v[0] === props.id)[1];
 
 	return (
-		<TouchableWithoutFeedback
+		<Pressable
 			onPress={() => {
 				dispatch(setKeyPair([props.id, value + 1]));
 			}}
@@ -40,6 +40,6 @@ export default function NumButton(props) {
 					<Text style={{textAlign: "center"}}>{props.children} {`(${value})`}</Text>
 				</View>
 			</View>
-		</TouchableWithoutFeedback>
+		</Pressable>
 	);
 }
