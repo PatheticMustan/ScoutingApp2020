@@ -9,6 +9,7 @@ import {
 import Incrementer from "../../Components/Utility/Incrementer.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
 import RadioButton from "../../Components/Buttons/RadioButton.js";
+import ScoutingColors from "../../Config/ScoutingColors";
 
 export default class MatchInfoContainer extends React.Component {
 	render() {
@@ -80,7 +81,7 @@ const styles=StyleSheet.create({
 		fontWeight: "bold"
 	},
 	container: {
-		backgroundColor: "#FFF",
+		backgroundColor: ScoutingColors.white,
 		paddingHorizontal: 50,
 		paddingVertical: 20
 	},
@@ -99,7 +100,7 @@ const styles=StyleSheet.create({
 	matchInfoContainer: {
 		flex: 1,
 		flexDirection: "row",
-		borderColor: "black",
+		borderColor: ScoutingColors.black,
 		borderWidth: StyleSheet.hairlineWidth,
 		borderRadius: 10
 	},

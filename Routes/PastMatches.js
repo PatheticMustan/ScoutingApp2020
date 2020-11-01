@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import Header from "./PastMatchesComponents/Header.js";
+import ScoutingColors from "../Config/ScoutingColors";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectData } from "../Redux/Features/matchSlice.js";
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
 		marginTop: Constants.statusBarHeight,
 	},
 	item: {
-		borderColor: "#696969",
+		borderColor: ScoutingColors.dimGray,
 		borderWidth: 1,
 		padding: 20
 	},

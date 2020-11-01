@@ -14,6 +14,7 @@ import { importMatches } from "./Redux/Features/matchSlice.js";
 import Scout from "./Routes/Scout.js";
 import PastMatches from "./Routes/PastMatches.js";
 import About from "./Routes/About.js";
+import ScoutingColors from "./Config/ScoutingColors";
 
 // create bottom tab navigation
 const Tab = createBottomTabNavigator();
@@ -23,7 +24,7 @@ function MyTabs() {
 		<Tab.Navigator
 			initialRouteName="Scout"
 			tabBarOptions={{
-				activeTintColor: "#E91E63",
+				activeTintColor: ScoutingColors.ruby,
 			}}
 		>
 			<Tab.Screen

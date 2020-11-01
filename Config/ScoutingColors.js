@@ -1,9 +1,17 @@
 export default {
-	red: "#FFD0D0",
+	lightRed: "#FFD0D0",
+	red: "#FF0000",
 	lightBlue: "#D0F4FF",
 	white: "#FFFFFF", // somebody's paying mad respects
 	black: "#000000",
-	skyBlue: "#29ADFF"
+	skyBlue: "#29ADFF",
+	ruby: "#E91E63",
+	gray: "#2C2C2C",
+	doveGray: "#666",
+	dimGray: "#696969", // hehe
+	lightGray: "#DDD",
+	blue: "#0000ff", 
+
 	/**
 	 * Why do birds suddenly appear, everytime you are near?
 	 * Just like me, they want to be... close to you...

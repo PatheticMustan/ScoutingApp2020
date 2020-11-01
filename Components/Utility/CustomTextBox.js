@@ -8,6 +8,8 @@ import {
 import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
+import ScoutingColors from "../../Config/ScoutingColors";
+
 export default function CustomTextBox(props) {
 	const dispatch = useDispatch();
 
@@ -69,8 +71,8 @@ export default function CustomTextBox(props) {
 				style={{
 					flex: 1,
 					padding: 10,
-					backgroundColor: (props.backgroundColor? props.backgroundColor : "#FFFFFF"),
-					borderColor: "#666",
+					backgroundColor: (props.backgroundColor ? props.backgroundColor : ScoutingColors.white),
+					borderColor: ScoutingColors.doveGray,
 					borderWidth: StyleSheet.hairlineWidth,
 					borderRadius: (props.borderRadius? props.borderRadius : props.height / 5)
 				}}
