@@ -13,7 +13,7 @@ export const matchSlice = createSlice({
 
 			const [key, kpv] = action.payload;
 
-			if (!(typeof key === "string"))        console.log("WARNING! Expected key to be string.");
+			if (!(typeof key === "string"))          console.log("WARNING! Expected key to be string.");
 			if (!(kpv instanceof Array))             console.log("WARNING! Expected match to be array.");
 			if (!kpv.every(v => v instanceof Array)) console.log("WARNING! Expected each item to be an array.");
 
@@ -26,7 +26,6 @@ export const matchSlice = createSlice({
 			} else {
 				// if the match key IS found
 				// overwrite
-				// TODO: Prompt for confirmation of overwrite, not adding it now since I'm testing
 				state.matches[mki] = action.payload;
 			}
 		},
