@@ -18,7 +18,7 @@ import { setDefault, freshStart, selectData } from "../../Redux/Features/dataSli
 import { writeMatch } from "../../Redux/Features/matchSlice.js";
 import kpvToCsv from "../../Config/kpvToCsv.js";
 
-
+import ScoutingColors from "../../Config/ScoutingColors";
 
 export default function Header() {
 	const dispatch = useDispatch();
@@ -130,10 +130,10 @@ export default function Header() {
 	}
 
 	return (
-		<View style={{ backgroundColor: selectedTeam == 1 ? "#FFD0D0" : "#D0F4FF", flex: 1 }}>
+		<View style={{ backgroundColor: selectedTeam == 1 ? ScoutingColors.lightRed : ScoutingColors.lightBlue, flex: 1 }}>
 			<Text style={styles.headerText}>2020 - Infinite Recharge{"\n"}</Text>
 			<View style={styles.linkContainer}>
-				<Link color="red" onPress={() => reset()}>Reset</Link>
+				<Link color={ScoutingColors.red} onPress={() => reset()}>Reset</Link>
 
 				<Link></Link>
 
@@ -147,10 +147,10 @@ export default function Header() {
 						flexDirection: "row",
 					}}
 				/>
+					
+				<Link color={ScoutingColors.blue} onPress={() => save()}>Save</Link>
 
-				<Link color="blue" onPress={() => save()}>Save</Link>
-
-				<Link color="blue" onPress={() => saveAndExport()}>Save and Export</Link>
+				<Link color={ScoutingColors.blue} onPress={() => saveAndExport()}>Save and Export</Link>
 			</View>
 		</View>
 	);

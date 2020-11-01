@@ -10,6 +10,8 @@ import {
 import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
+import ScoutingColors from "../../Config/ScoutingColors";
+
 export default function ClimbHeight(props) {
 	const dispatch = useDispatch();
 
@@ -41,7 +43,7 @@ export default function ClimbHeight(props) {
 					>
 						<View style={[
 							styles.container,
-							{ backgroundColor: (selectedIndex === i ? props.bgc : "white") }
+							{ backgroundColor: (selectedIndex === i ? props.bgc : ScoutingColors.white) }
 						]}>
 							<Image source={data[i][1]} style={styles.image} />
 							<Text style={{ textAlign: "center" }}>{data[i][0]}</Text>

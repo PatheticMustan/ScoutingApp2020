@@ -6,6 +6,7 @@ import {
 } from "react-native";
 
 import BoolButton from "../../Components/Buttons/BoolButton.js";
+import ScoutingColors from "../../Config/ScoutingColors";
 
 export default class Other extends React.Component {
 	render() {
@@ -23,7 +24,7 @@ export default class Other extends React.Component {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: "#FFF",
+		backgroundColor: ScoutingColors.white,
 		paddingHorizontal: 50,
 		paddingVertical: 20
 	},
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-around",
-		borderColor: "black",
+		borderColor: ScoutingColors.black,
 		borderWidth: StyleSheet.hairlineWidth,
 		borderRadius: 10,
 		paddingVertical: 20,

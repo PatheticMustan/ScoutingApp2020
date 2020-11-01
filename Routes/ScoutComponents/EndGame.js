@@ -11,6 +11,7 @@ import CustomTextBox from "../../Components/Utility/CustomTextBox";
 import Timer from "../../Components/OneUse/Timer.js";
 import ClimbHeight from "../../Components/OneUse/ClimbHeight.js";
 import ClimbPosition from "../../Components/OneUse/ClimbPosition.js";
+import ScoutingColors from "../../Config/ScoutingColors";
 import { useDispatch, useSelector } from "react-redux";
 import { setDefault, selectData } from "../../Redux/Features/dataSlice.js";
 
@@ -78,7 +79,7 @@ export default function Endgame() {
 							width={900}
 							height={250}
 							placeholder="Type your comments here..."
-							backgroundColor={"#DDD"}
+							backgroundColor={ScoutingColors.lightGray}
 							borderRadius={10}
 						/>
 					</View>
@@ -121,7 +122,7 @@ export default function Endgame() {
 							width={900}
 							height={250}
 							placeholder="Type your comments here..."
-							backgroundColor={"#DDD"}
+							backgroundColor={ScoutingColors.lightGray}
 							borderRadius={10}
 						/>
 					</View>
@@ -148,13 +149,13 @@ const styles = StyleSheet.create({
 		alignItems: "center"
 	},
 	container: {
-		backgroundColor: "#FFF",
+		backgroundColor: ScoutingColors.white,
 		paddingHorizontal: 50,
 		paddingVertical: 20
 	},
 	endgameContainer: {
 		alignItems: "center",
-		borderColor: "black",
+		borderColor: ScoutingColors.black,
 		borderRadius: 10,
 		borderWidth: StyleSheet.hairlineWidth,
 		padding: 20

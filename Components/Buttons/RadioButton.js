@@ -9,6 +9,8 @@ import {
 import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
+import ScoutingColors from '../../Config/ScoutingColors';
+
 export default function RadioButton(props) {
 	const dispatch = useDispatch();
 
@@ -36,7 +38,7 @@ export default function RadioButton(props) {
 							margin: props.margin ? props.margin : 0,
 							width: (props.width ? props.width : 100),
 							height: 40,
-							backgroundColor: (selectedIndex === i ? props.bgc : "white"),
+							backgroundColor: (selectedIndex === i ? props.bgc : ScoutingColors.white),
 
 							/** The ternary operator pretends to be your friend, until you realize a few months later,
 							 *  when you don't understand any of your code, that it was actually the spawn of Satan

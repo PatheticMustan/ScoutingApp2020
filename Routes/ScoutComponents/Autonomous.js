@@ -11,6 +11,8 @@ import NumButton from "../../Components/Buttons/NumButton.js";
 import RadioButton from "../../Components/Buttons/RadioButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
 import Arena from "../../Components/Utility/Arena.js";
+import ScoutingColors from "../../Config/ScoutingColors";
+
 import { useSelector, useDispatch } from "react-redux";
 import { selectData, setDefault } from "../../Redux/Features/dataSlice.js";
 
@@ -65,7 +67,7 @@ export default function Autonomous() {
 						flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
 					}}>
 						<Text
-							style={{ fontSize: 12, color: "white", width: 120, textAlign: "center" }}
+							style={{ fontSize: 12, color: ScoutingColors.white, width: 120, textAlign: "center" }}
 							margin={0}
 						>
 							Balls Scored
@@ -91,7 +93,7 @@ export default function Autonomous() {
 						width={900}
 						height={250}
 						placeholder="Type your comments here..."
-						backgroundColor={"#DDD"}
+						backgroundColor={ScoutingColors.lightGray}
 						borderRadius={10}
 					/>
 				</View>
@@ -103,13 +105,13 @@ export default function Autonomous() {
 const styles = StyleSheet.create({
 	autonomousContainer: {
 		alignItems: "center",
-		borderColor: "black",
+		borderColor: ScoutingColors.black,
 		borderRadius: 10,
 		borderWidth: StyleSheet.hairlineWidth,
 		flex: 1,
 	},
 	container: {
-		backgroundColor: "#FFF",
+		backgroundColor: ScoutingColors.white,
 		paddingHorizontal: 50,
 		paddingVertical: 20
 	},

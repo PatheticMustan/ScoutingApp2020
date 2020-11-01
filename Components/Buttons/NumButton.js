@@ -6,6 +6,8 @@ import {
 	Pressable
 } from "react-native";
 
+import ScoutingColors from "../../Config/ScoutingColors";
+
 import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -33,7 +35,7 @@ export default function NumButton(props) {
 				borderWidth: StyleSheet.hairlineWidth,
 				width: (props.width ? props.width : 100),
 				height: (props.height ? props.height : 40),
-				backgroundColor: "white",
+				backgroundColor: ScoutingColors.white,
 				justifyContent: "center",
 			}}>
 				<View style={{ flex: 1, justifyContent: "center" }}>
