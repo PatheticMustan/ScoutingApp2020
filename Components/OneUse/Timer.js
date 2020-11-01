@@ -16,11 +16,11 @@ export default function Timer() {
 	dispatch(setDefault(["Time", 0]));
 
 	return (
-		<View style = {{flex: 1}}>
-			<View style = {{flex: 1, alignSelf: "center", paddingBottom: 5}}>
-				<Text>{(`${(seconds-(seconds%60))/60}:${((seconds % 60)+"").padStart(2, "0")}`)}</Text>
+		<View style={{ flex: 1 }}>
+			<View style={{ flex: 1, alignSelf: "center", paddingBottom: 5 }}>
+				<Text>{(`${(seconds - (seconds % 60)) / 60}:${((seconds % 60) + "").padStart(2, "0")}`)}</Text>
 			</View>
-				
+
 			<BoolButton
 				id="TimerClicked"
 				bgc="lime"
@@ -28,7 +28,7 @@ export default function Timer() {
 				press={() => {
 					if (!isEnabled) {
 						setEnabled(true);
-						
+
 						// the only exception I'll make to "no globals"
 						// we can probably assume we'll only ever need one timer
 						// if we DO need more than one timer, I'm sure we can figure out a solution by then
@@ -42,7 +42,7 @@ export default function Timer() {
 					}
 				}}
 			>
-				<Text>{!isEnabled? "Start" : "Stop" } Stopwatch</Text>
+				<Text>{!isEnabled ? "Start" : "Stop"} Stopwatch</Text>
 			</BoolButton>
 		</View>
 	);

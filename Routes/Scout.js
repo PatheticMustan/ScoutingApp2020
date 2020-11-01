@@ -15,18 +15,18 @@ import Other from "./ScoutComponents/Other.js";
 
 export default function Scout() {
 	return (
-		<View style = {{flex: 1}}>
-			<View style = {{flex: 1, justifyContent: "center"}}>
-				<Header/>
+		<View style={{ flex: 1 }}>
+			<View style={{ flex: 1, justifyContent: "center" }}>
+				<Header />
 			</View>
 
-			<View style = {{flex: 7}}>
+			<View style={{ flex: 7 }}>
 				<ScrollView>
-					<MatchInfoContainer/>
-					<Autonomous/>
-					<TeleOp/>
-					<Endgame/>
-					<Other/>
+					<MatchInfoContainer />
+					<Autonomous />
+					<TeleOp />
+					<Endgame />
+					<Other />
 				</ScrollView>
 			</View>
 		</View>

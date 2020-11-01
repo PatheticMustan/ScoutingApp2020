@@ -25,11 +25,11 @@ export default function BoolButton(props) {
 			props.press && props.press();
 			dispatch(setKeyPair([props.id, !value]));
 		}}>
-			<View style = {[
+			<View style={[
 				styles.boolButtonContainer,
 				{
 					width: (props.width || 100),
-					backgroundColor: (value? props.bgc : ScoutingColors.white)
+					backgroundColor: (value ? props.bgc : ScoutingColors.white)
 				}
 			]}>
 				<Text style={styles.textCenter}>{props.children}</Text>
@@ -46,5 +46,5 @@ const styles = new StyleSheet.create({
 		margin: 10,
 		height: 40,
 	},
-	textCenter: {textAlign: "center"}
+	textCenter: { textAlign: "center" }
 });

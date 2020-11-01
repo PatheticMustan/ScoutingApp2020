@@ -40,7 +40,7 @@ function MyTabs() {
 				options={{
 					tabBarLabel: "Past Matches",
 					tabBarIcon: ({ color, size }) => <Entypo name="back-in-time" color={color} size={size} />
-				}}  
+				}}
 			/>
 			<Tab.Screen
 				name="About"
@@ -98,13 +98,13 @@ export default function App() {
 	return (
 		<Provider store={store}>
 			{/** ASS must be inside the Provider to dispatch importMatches(), so I made it into a component. */}
-			<ASS/>
+			<ASS />
 
 			<NavigationContainer>
-				<MyTabs/>
+				<MyTabs />
 			</NavigationContainer>
 
-			<StatusBar style="dark"/>
+			<StatusBar style="dark" />
 		</Provider>
 	);
 }

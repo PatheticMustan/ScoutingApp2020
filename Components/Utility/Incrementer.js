@@ -31,20 +31,20 @@ export default function Incrementer(props) {
 			}}>
 				<View style={styles.iconContainer}>
 					{ /** I'm so lonely */}
-					<FontAwesome name="minus" size={30} color={ScoutingColors.skyBlue}/>
+					<FontAwesome name="minus" size={30} color={ScoutingColors.skyBlue} />
 				</View>
 			</TouchableOpacity>
-			
-			<Text style = {{fontSize: 30}}>{value}{props.max? `/${props.max}` : ""}</Text>
+
+			<Text style={{ fontSize: 30 }}>{value}{props.max ? `/${props.max}` : ""}</Text>
 
 			<TouchableOpacity onPress={() => {
 				// first make sure max value exists, then do comparison
-				if (!props.max || value+1 <= props.max) {
+				if (!props.max || value + 1 <= props.max) {
 					dispatch(setKeyPair([props.id, value + 1]));
 				}
 			}}>
-				<View style = {styles.iconContainer}>
-					<FontAwesome name="plus" size={30} color={ScoutingColors.skyBlue}/>
+				<View style={styles.iconContainer}>
+					<FontAwesome name="plus" size={30} color={ScoutingColors.skyBlue} />
 				</View>
 			</TouchableOpacity>
 		</View>

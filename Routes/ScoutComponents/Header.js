@@ -15,7 +15,7 @@ import Link from "../../Components/Utility/Link.js";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setDefault, freshStart, selectData } from "../../Redux/Features/dataSlice.js";
-import { writeMatch  } from "../../Redux/Features/matchSlice.js";
+import { writeMatch } from "../../Redux/Features/matchSlice.js";
 import kpvToCsv from "../../Config/kpvToCsv.js";
 
 
@@ -38,18 +38,18 @@ export default function Header() {
 			"Reset",
 			"Are you sure you want to reset the Scoutsheet?",
 			[
-				{text: "Reset", onPress: () => dispatch(freshStart())},
-				{text: "Cancel", style: "cancel"}
+				{ text: "Reset", onPress: () => dispatch(freshStart()) },
+				{ text: "Cancel", style: "cancel" }
 			]
 		);
 	}
-	
-	async function save(successCallback=()=>{}) {
+
+	async function save(successCallback = () => { }) {
 		// fun fact, kpv is short for KeyPairValue, because it's filled with [key, value]
 		// matchKey is a unique identifier for a match. Right now I could have Team
 		const matchKey = ["Team", "TeamNumber", "MatchNumber", "MatchType", "Scouters"]
 			.map(k => [k, kpv.find(v => v[0] === k)[1]]); // "Team" --> ["Team", value]
-			
+
 		// if a single one of them is ""...
 		if (matchKey.some(v => v[1] === "")) {
 			// find em
@@ -61,13 +61,13 @@ export default function Header() {
 			// formatting
 			// prepend "and " to last item
 			// 1, 2, 3, 4, and 5 are blank
-			if (blank.length > 1) { blank[blank.length-1] = "and " + blank[blank.length-1]; }
+			if (blank.length > 1) { blank[blank.length - 1] = "and " + blank[blank.length - 1]; }
 
 			alert(`${blank.join(", ")} is blank!`);
 			// stop save()'ing
 			return;
 		}
-			
+
 		const final = [matchKey.join(""), kpv];
 
 		// get matches OR default []
@@ -86,7 +86,7 @@ export default function Header() {
 			// now we're finished
 			successCallback(final);
 		};
-			
+
 		// add our lovely changes
 		if (mki === -1) {
 			// if the match key is not found
@@ -100,41 +100,43 @@ export default function Header() {
 				"Overwrite",
 				"A match already exists with this match key. Are you sure you want to overwrite it?",
 				[
-					{text: "Overwrite", onPress: () => {
-						matches[mki] = final;
-						saveMatch();
-					}},
-					{text: "Cancel", style: "cancel"}
+					{
+						text: "Overwrite", onPress: () => {
+							matches[mki] = final;
+							saveMatch();
+						}
+					},
+					{ text: "Cancel", style: "cancel" }
 				]
 			);
 		}
 	}
-	
+
 	async function saveAndExport() {
 		save(final => {
 			if (final === undefined) return;
-			
+
 			console.log("REMINDER: Sharing doesn't work on web!");
 			const path = "./data.csv";
 
 			const output = kpvToCsv([final]);
 			console.log(output);
-	
-			FileSystem.writeAsStringAsync(FileSystem.documentDirectory+path, output, { encoding: FileSystem.EncodingType.UTF8 });
+
+			FileSystem.writeAsStringAsync(FileSystem.documentDirectory + path, output, { encoding: FileSystem.EncodingType.UTF8 });
 			// share the new csv file we just made
-			Sharing.shareAsync(FileSystem.documentDirectory+path);
+			Sharing.shareAsync(FileSystem.documentDirectory + path);
 		});
-		
+
 	}
 
 	return (
-		<View style={{backgroundColor: selectedTeam==1? "#FFD0D0" : "#D0F4FF", flex: 1}}>
+		<View style={{ backgroundColor: selectedTeam == 1 ? "#FFD0D0" : "#D0F4FF", flex: 1 }}>
 			<Text style={styles.headerText}>2020 - Infinite Recharge{"\n"}</Text>
 			<View style={styles.linkContainer}>
 				<Link color="red" onPress={() => reset()}>Reset</Link>
 
 				<Link></Link>
-				
+
 				<RadioButton
 					id="Team"
 					data={["Blue Alliance", "Red Alliance"]}
@@ -145,7 +147,7 @@ export default function Header() {
 						flexDirection: "row",
 					}}
 				/>
-					
+
 				<Link color="blue" onPress={() => save()}>Save</Link>
 
 				<Link color="blue" onPress={() => saveAndExport()}>Save and Export</Link>
