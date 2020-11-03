@@ -77,14 +77,7 @@ export default function CustomTextBox(props) {
 					borderRadius: (props.borderRadius ? props.borderRadius : props.height / 5)
 				}}
 				{...props.options}
-				onChangeText={text => {
-					// TODO: instead of just filtering text, encode it!
-					const filtered = text
-						.replace(/\n/g, " ")
-						.replace(/,/g, " ");
-
-					setText(filtered);
-				}}
+				onChangeText={text => setText(text)}
 			/>
 		</View>
 	);

@@ -115,7 +115,8 @@ export default function kpvToCsv(matches) {
 	// make header
 	const header = [];
 	theHolyGrail.forEach(col => {
-		const filteredCell = col.name.replaceAll("\"", "");
+		// escape quotes
+		const filteredCell = col.name.replaceAll("\"", "\"\"");
 		// https://stackoverflow.com/a/566059/12894940
 		// the quotes around the cell ensure the newlines and commas are encoded properly.
 		header.push(`"${filteredCell}"`);
@@ -133,15 +134,13 @@ export default function kpvToCsv(matches) {
 			const filteredCell =
 				// the result needs to be a string so we can use .replaceAll
 				("" + col.vf(kpv))
-					.replaceAll("\"", "")
-					.replaceAll("\n", "");
+					// fix 2020#11
+					.replaceAll("\"", "\"\"");
 
 			row.push(`"${filteredCell}"`);
 		});
 
 		csv += row.join(",") + "\r\n";
 	});
-
-
 	return csv;
 }
