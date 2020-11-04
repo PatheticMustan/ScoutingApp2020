@@ -15,12 +15,10 @@ import Other from "./ScoutComponents/Other.js";
 
 export default function Scout() {
 	return (
+		// Both views need flex to make scrollbar work???
 		<View style={{ flex: 1 }}>
-			<View style={{ flex: 1, justifyContent: "center" }}>
-				<Header />
-			</View>
-
-			<View style={{ flex: 7 }}>
+			<Header />
+			<View style={{ flex: 1 }}>
 				<ScrollView>
 					<MatchInfoContainer />
 					<Autonomous />
