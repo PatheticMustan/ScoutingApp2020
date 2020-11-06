@@ -4,7 +4,7 @@ import {
 	ImageBackground
 } from "react-native";
 
-import { selectData, setDefault } from "../../Redux/Features/dataSlice.js";
+import { selectID, setDefault } from "../../Redux/Features/dataSlice.js";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Arena(props) {
@@ -15,8 +15,7 @@ export default function Arena(props) {
 	dispatch(setDefault([arenaID, 0]));
 	// since this isn't an input, no need to set default.
 	// get value from store
-	const kpv = useSelector(selectData);
-	const selectedTeam = kpv.find(v => v[0] === arenaID)[1];
+	const selectedTeam = useSelector(selectID(arenaID));
 
 	return (
 		<View>

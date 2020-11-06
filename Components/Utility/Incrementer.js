@@ -6,7 +6,7 @@ import {
 	TouchableOpacity
 } from "react-native";
 
-import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
+import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FontAwesome } from "react-native-vector-icons";
@@ -18,8 +18,7 @@ export default function Incrementer(props) {
 	// set default value
 	dispatch(setDefault([props.id, 0]));
 	// get value from store
-	const kpv = useSelector(selectData);
-	const value = kpv.find(v => v[0] === props.id)[1];
+	const value = useSelector(selectID(props.id));
 
 	return (
 		<View style={styles.container}>
