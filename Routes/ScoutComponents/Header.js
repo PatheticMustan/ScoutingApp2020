@@ -4,6 +4,7 @@ import {
 	Text,
 	View,
 	Alert,
+	Platform
 } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -116,17 +117,39 @@ export default function Header() {
 		save(final => {
 			if (final === undefined) return;
 
-			console.log("REMINDER: Sharing doesn't work on web!");
-			const path = "./data.csv";
-
 			const output = kpvToCsv([final]);
 			console.log(output);
 
-			FileSystem.writeAsStringAsync(FileSystem.documentDirectory + path, output, { encoding: FileSystem.EncodingType.UTF8 });
-			// share the new csv file we just made
-			Sharing.shareAsync(FileSystem.documentDirectory + path);
+			Platform.OS == "web"
+				? webExport(output, "data.csv")
+				: mobileExport(output);
 		});
+	}
 
+	function webExport(content, fileName) {
+		let a = document.createElement("a");
+		let mimeType = "text/csv;encoding:utf-8";
+
+		// Thanks, stackoverflow
+		if (URL && "download" in a) {
+			a.href = URL.createObjectURL(new Blob([content], {
+				type: mimeType
+			}));
+			a.setAttribute("download", fileName);
+			document.body.appendChild(a);
+			a.click();
+			document.body.removeChild(a);
+		} else {
+			location.href = "data:application/octet-stream," + encodeURIComponent(content);
+		}
+	}
+
+	function mobileExport(output) {
+		const path = "./data.csv";
+
+		FileSystem.writeAsStringAsync(FileSystem.documentDirectory + path, output, { encoding: FileSystem.EncodingType.UTF8 });
+		// share the new csv file we just made
+		Sharing.shareAsync(FileSystem.documentDirectory + path);
 	}
 
 	return (
