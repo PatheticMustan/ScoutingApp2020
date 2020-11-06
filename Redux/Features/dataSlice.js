@@ -65,6 +65,7 @@ window.skp = dataSlice.actions.setKeyPair;
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectData = state => state.data.keyPairValues;
-// export const selectData = id => state => state.data.keyPairValues[id];
+// yeah these are big brain hours
+export const selectID = id => state => state.data.keyPairValues[id];
 
 export default dataSlice.reducer;
