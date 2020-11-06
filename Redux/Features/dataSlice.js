@@ -19,8 +19,8 @@ export const dataSlice = createSlice({
 		},
 
 		setDefault: (state, action) => {
-			if (!(action.payload instanceof Array))		console.log("WARNING! Expected key-value array");
-			if (typeof action.payload[0] !== "string")	console.log("WARNING! Expected key to be string.");
+			if (!(action.payload instanceof Array))		console.log(`WARNING! Expected key-value array, instead got ${typeof action.payload}.`);
+			if (typeof action.payload[0] !== "string")	console.log(`WARNING! Expected key to be string, instead got ${typeof action.paylod[0]}.`);
 			if (action.payload.length !== 2)			console.log("WARNING! Expected key-value array to have two items.");
 
 			const [key, value] = action.payload;

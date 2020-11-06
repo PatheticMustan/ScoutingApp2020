@@ -11,13 +11,13 @@ export const matchSlice = createSlice({
 			// [key, payload]
 			// Tracer: ESCOURT THE PAYLOAD!
 
-			const [key, kpv] = action.payload;
+			const [matchKey, kpv] = action.payload;
 
-			if (!(typeof key === "string"))          console.log("WARNING! Expected key to be string.");
-			if (!(kpv instanceof Array))             console.log("WARNING! Expected match to be array.");
-			if (!kpv.every(v => v instanceof Array)) console.log("WARNING! Expected each item to be an array.");
+			if (!(typeof matchKey === "string"))					console.log(`WARNING! Expected key to be string, instead got ${typeof matchKey}.`);
+			if (!(kpv instanceof Array))							console.log(`WARNING! Expected match to be object, instead got ${typeof kpv}.`);
+			if (!Object.values(kpv).every(v => v instanceof Array))	console.log(`WARNING! Expected each item to be an array, instead got ${typeof kpv[0]}.`);
 
-			const mki = state.matches.findIndex(v => v && (v[0] === key));
+			const mki = state.matches.findIndex(v => v && (v[0] === matchKey));
 
 			if (mki === -1) {
 				// if the match key is not found
