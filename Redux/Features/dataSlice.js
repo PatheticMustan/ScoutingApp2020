@@ -12,20 +12,10 @@ export const dataSlice = createSlice({
 			if (typeof action.payload[0] !== "string")	console.log("WARNING! Expected key to be string.");
 			if (action.payload.length !== 2)			console.log("WARNING! Expected key-value array to have two items.");
 
-			// key-values are stored in the format [key, value]
-			const key = action.payload[0];
-			const value = action.payload[1];
+			// key-values are stored in the payload in the format [key, value]
+			const [key, value] = action.payload;
 
-			const payloadIndex = state.keyPairValues.findIndex(v => v[0] === key);
-
-			// if the key isn't in the state yet...
-			if (payloadIndex === -1) {
-				// push it real good
-				state.keyPairValues.push([key, value]);
-			} else {
-				// otherwise, just modify the value of the existing key
-				state.keyPairValues[payloadIndex][1] = value;
-			}
+			state.keyPairValues[key] = value;
 		},
 
 		setDefault: (state, action) => {
@@ -33,12 +23,9 @@ export const dataSlice = createSlice({
 			if (typeof action.payload[0] !== "string")	console.log("WARNING! Expected key to be string.");
 			if (action.payload.length !== 2)			console.log("WARNING! Expected key-value array to have two items.");
 
-			const key = action.payload[0];
-			const value = action.payload[1];
+			const [key, value] = action.payload;
 
-			const payloadIndex = state.keyPairValues.findIndex(v => v[0] === key);
-
-			if (payloadIndex === -1) state.keyPairValues.push([key, value]);
+			if (!(key in state.keyPairValues)) state.keyPairValues[key] = value;
 		},
 
 		loadMatch: (state, action) => {
@@ -53,19 +40,18 @@ export const dataSlice = createSlice({
 			 * wipe the slate clean
 			 * commit magnet on hard-drive
 			 * 
-			 * if you have spotify:
-			 * Amnesia, by 5 Seconds of Summer: https://open.spotify.com/track/1JCCdiru7fhstOIF4N7WJC
-			 * 
-			 * "I wish that I could wake up with Amnesia"
-			 * Well loverboy, today's your lucky day
+			 * Amnesia, by 5SOS: https://open.spotify.com/track/1JCCdiru7fhstOIF4N7WJC
 			 **/
 
 			// if you couldn't tell, this erases everything but info
+			// whitelist vals not to remove
+			const whitelist = ["Team", "TeamNumber", "MatchNumber", "MatchType", "Scouters", "StartingPieces"];
 
-			state.keyPairValues = state.keyPairValues.filter(v =>
-				// whitelist vals not to remove
-				["Team", "TeamNumber", "MatchNumber", "MatchType", "Scouters", "StartingPieces"].includes(v[0])
-			);
+			for (key in state.keyPairValues) {
+				if (!whitelist.includes(key)) {
+					delete state.keyPairValues[key];
+				}
+			}
 		}
 	},
 });
