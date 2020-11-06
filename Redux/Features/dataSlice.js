@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const dataSlice = createSlice({
 	name: "dataSlice",
 	initialState: {
-		keyPairValues: [],
+		keyPairValues: {},
 	},
 	reducers: {
 		setKeyPair: (state, action) => {
@@ -25,7 +25,9 @@ export const dataSlice = createSlice({
 
 			const [key, value] = action.payload;
 
-			if (!(key in state.keyPairValues)) state.keyPairValues[key] = value;
+			if (!(key in state.keyPairValues)) {
+				state.keyPairValues[key] = value;
+			}
 		},
 
 		loadMatch: (state, action) => {
@@ -47,7 +49,7 @@ export const dataSlice = createSlice({
 			// whitelist vals not to remove
 			const whitelist = ["Team", "TeamNumber", "MatchNumber", "MatchType", "Scouters", "StartingPieces"];
 
-			for (key in state.keyPairValues) {
+			for (let key in state.keyPairValues) {
 				if (!whitelist.includes(key)) {
 					delete state.keyPairValues[key];
 				}
@@ -63,5 +65,6 @@ window.skp = dataSlice.actions.setKeyPair;
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectData = state => state.data.keyPairValues;
+// export const selectData = id => state => state.data.keyPairValues[id];
 
 export default dataSlice.reducer;
