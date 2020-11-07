@@ -11,7 +11,7 @@ import Header from "./PastMatchesComponents/Header.js";
 import ScoutingColors from "../Config/ScoutingColors";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectData } from "../Redux/Features/matchSlice.js";
+import { selectMatches } from "../Redux/Features/matchSlice.js";
 import { loadMatch } from "../Redux/Features/dataSlice.js";
 
 import { Constants } from "react-native-unimodules";
@@ -20,9 +20,9 @@ export default function PastMatches(props) {
 	const dispatch = useDispatch();
 
 	// get value from store
-	const matches = useSelector(selectData);
+	const matches = useSelector(selectMatches);
 
-	const find = (pmm, id) => pmm[1].find(v => v[0] === id)[1];
+	const find = (pmm, id) => pmm[1][id];
 
 	// matches = storage
 	// parse matches
@@ -56,8 +56,7 @@ export default function PastMatches(props) {
 			}}
 			ListHeaderComponent={<Header />}
 			keyExtractor={data => {
-				// very lazy solution but whatever, I'm a pretty lazy person
-				return data.toString();
+				return data[0];
 			}} /** https://stackoverflow.com/a/49577737/12894940 */
 		/>
 	);
