@@ -71,8 +71,8 @@ export default function kpvToCsv(matches) {
 		vf: kpv => kpv["TeleMissed"]
 	}, {
 		name: "Shoot From",
-		vf: kpv => [kpv["TargetZone"], kpv["TrenchZone"], kpv["Other"]]
-			.filter(v => v !== undefined) // filter out undefined
+		vf: kpv => [kpv["TargetZone"]? "Target Zone" : "", kpv["TrenchZone"]? "Trench Zone" : "", kpv["Other"]? "Other" : ""]
+			.filter(v => v !== "") // filter out none
 			.join(", ") // make it look nice
 	}, {
 		name: "Rotation",
