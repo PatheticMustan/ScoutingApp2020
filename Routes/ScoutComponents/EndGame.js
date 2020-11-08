@@ -13,16 +13,16 @@ import ClimbHeight from "../../Components/OneUse/ClimbHeight.js";
 import ClimbPosition from "../../Components/OneUse/ClimbPosition.js";
 import ScoutingColors from "../../Config/ScoutingColors";
 import { useDispatch, useSelector } from "react-redux";
-import { setDefault, selectData } from "../../Redux/Features/dataSlice.js";
+import { setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 
 export default function Endgame() {
 	const dispatch = useDispatch();
+	const endgameID = "EndgameType";
 
 	// set default value
-	dispatch(setDefault(["EndgameType", 0]));
+	dispatch(setDefault([endgameID, 0]));
 	// get value from store
-	const kpv = useSelector(selectData);
-	const value = kpv.find(v => v[0] === "EndgameType")[1];
+	const value = useSelector(selectID(endgameID));
 
 	if (value === 1) {
 		return (
@@ -34,7 +34,7 @@ export default function Endgame() {
 
 					<View style={{ margin: 20 }}>
 						<RadioButton
-							id="EndgameType"
+							id={endgameID}
 							data={["Park", "Climb", "None"]}
 							bgc="orange"
 							segmentedButton
@@ -96,7 +96,7 @@ export default function Endgame() {
 
 					<View style={{ margin: 20 }}>
 						<RadioButton
-							id="EndgameType"
+							id={endgameID}
 							data={["Park", "Climb", "None"]}
 							bgc="orange"
 							segmentedButton

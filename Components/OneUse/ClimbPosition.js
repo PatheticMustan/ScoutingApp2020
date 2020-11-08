@@ -6,7 +6,7 @@ import {
 	Pressable,
 	ImageBackground
 } from "react-native";
-import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
+import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import ScoutingColors from "../../Config/ScoutingColors.js";
 
@@ -16,8 +16,7 @@ export default function ClimbPosition(props) {
 	// set default value
 	dispatch(setDefault([props.id, 0]));
 	// get value from store
-	const kpv = useSelector(selectData);
-	const selectedIndex = kpv.find(v => v[0] === props.id)[1];
+	const selectedIndex = useSelector(selectID(props.id));
 
 	// all possible options.
 	// [name, flexSpace]

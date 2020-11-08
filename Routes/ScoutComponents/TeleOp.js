@@ -7,12 +7,11 @@ import {
 
 import BoolButton from "../../Components/Buttons/BoolButton.js";
 import NumButton from "../../Components/Buttons/NumButton.js";
-import RadioButton from "../../Components/Buttons/RadioButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
 import Arena from "../../Components/Utility/Arena.js";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setDefault, selectData } from "../../Redux/Features/dataSlice.js";
+import { setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import ScoutingColors from "../../Config/ScoutingColors.js";
 
 export default function TeleOp() {
@@ -23,8 +22,7 @@ export default function TeleOp() {
 	dispatch(setDefault([arenaID, 0]));
 	// since this isn't an input, no need to set default.
 	// get value from store
-	const kpv = useSelector(selectData);
-	const selectedTeam = kpv.find(v => v[0] === arenaID)[1];
+	const selectedTeam = useSelector(selectID(arenaID));
 
 	return (
 		<View style={styles.container}>

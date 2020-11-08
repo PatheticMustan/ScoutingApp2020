@@ -14,7 +14,7 @@ import Arena from "../../Components/Utility/Arena.js";
 import ScoutingColors from "../../Config/ScoutingColors";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectData, setDefault } from "../../Redux/Features/dataSlice.js";
+import { selectID, setDefault } from "../../Redux/Features/dataSlice.js";
 
 export default function Autonomous() {
 	const arenaID = "Team";
@@ -23,8 +23,7 @@ export default function Autonomous() {
 	// set default
 	dispatch(setDefault([arenaID, 0]));
 	// get value from store
-	const kpv = useSelector(selectData);
-	const selectedTeam = kpv.find(v => v[0] === arenaID)[1];
+	const selectedTeam = useSelector(selectID(arenaID));
 
 	return (
 		<View style={styles.container}>

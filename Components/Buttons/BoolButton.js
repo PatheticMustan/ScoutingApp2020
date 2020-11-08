@@ -6,7 +6,7 @@ import {
 	Pressable
 } from "react-native";
 
-import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
+import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import ScoutingColors from "../../Config/ScoutingColors.js";
 
@@ -16,8 +16,7 @@ export default function BoolButton(props) {
 	// set default value
 	dispatch(setDefault([props.id, false]));
 	// get value from store
-	const kpv = useSelector(selectData);
-	const value = kpv.find(v => v[0] === props.id)[1];
+	const value = useSelector(selectID(props.id));
 
 	return (
 		<Pressable onPress={() => {

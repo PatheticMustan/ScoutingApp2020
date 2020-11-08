@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	View,
 	Text
@@ -14,6 +14,20 @@ export default function Timer() {
 	const [seconds, setSeconds] = useState(0);
 
 	dispatch(setDefault(["Time", 0]));
+		
+	useEffect(() => {
+		const timerInterval = setInterval(() => {
+			if (isEnabled) setSeconds(oldSeconds => oldSeconds + 1);
+		}, 1000);
+
+		// callback when isEnabled ends
+		return () => {
+			clearInterval(timerInterval);
+			dispatch(setKeyPair(["Time", seconds]));
+		};
+
+		// run when isEnabled updates
+	}, [isEnabled]);
 
 	return (
 		<View style={{ flex: 1 }}>
@@ -25,22 +39,7 @@ export default function Timer() {
 				id="TimerClicked"
 				bgc="lime"
 				width={160}
-				press={() => {
-					if (!isEnabled) {
-						setEnabled(true);
-
-						// the only exception I'll make to "no globals"
-						// we can probably assume we'll only ever need one timer
-						// if we DO need more than one timer, I'm sure we can figure out a solution by then
-						global.timerInterval = setInterval(async () => {
-							await setSeconds(oldSeconds => oldSeconds + 1);
-						}, 1000);
-					} else {
-						clearInterval(global.timerInterval);
-						setEnabled(false);
-						dispatch(setKeyPair(["Time", seconds]));
-					}
-				}}
+				press={() => setEnabled(v => !v)}
 			>
 				<Text>{!isEnabled ? "Start" : "Stop"} Stopwatch</Text>
 			</BoolButton>
