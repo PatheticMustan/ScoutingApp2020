@@ -3,7 +3,7 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	TouchableOpacity
+	TouchableOpacity,
 } from "react-native";
 
 import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
@@ -12,14 +12,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { FontAwesome } from "react-native-vector-icons";
 import ScoutingColors from "../../Config/ScoutingColors.js";
 
+import CustomTextBox from "./CustomTextBox";
+
 export default function Incrementer(props) {
 	const dispatch = useDispatch();
 
 	// set default value
 	dispatch(setDefault([props.id, 0]));
+
 	// get value from store
 	const kpv = useSelector(selectData);
-	const value = kpv.find(v => v[0] === props.id)[1];
+	const value = parseInt(kpv.find(v => v[0] === props.id)[1]);
 
 	return (
 		<View style={styles.container}>
@@ -35,7 +38,12 @@ export default function Incrementer(props) {
 				</View>
 			</TouchableOpacity>
 
-			<Text style={{ fontSize: 30 }}>{value}{props.max ? `/${props.max}` : ""}</Text>
+			{props.max == null
+				// Match Number
+				? <CustomTextBox max={props.max} borderRadius={10} padding={0} fontSize={30} margin={0} isNumber={true} id={props.id} keyboardType="number-pad" width={55} />
+				// Starting Game Pieces
+				: <Text style={{ fontSize: 30 }}>{props.max ? `${value}/${props.max}` : value + ""}</Text>
+			}
 
 			<TouchableOpacity onPress={() => {
 				// first make sure max value exists, then do comparison

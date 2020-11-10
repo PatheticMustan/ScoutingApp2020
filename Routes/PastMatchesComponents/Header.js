@@ -56,7 +56,6 @@ export default function Header() {
 
 
 	function webExport(content, fileName) {
-		console.log("NAY");
 		let a = document.createElement("a"); 
 		let mimeType = "text/csv;encoding:utf-8";
 
@@ -75,7 +74,6 @@ export default function Header() {
 	}
 
 	function mobileExport(output) {
-		console.log("YAY");
 		const path = "./data.csv";
 
 		FileSystem.writeAsStringAsync(FileSystem.documentDirectory + path, output, { encoding: FileSystem.EncodingType.UTF8 });

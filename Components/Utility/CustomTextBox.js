@@ -13,10 +13,10 @@ import ScoutingColors from "../../Config/ScoutingColors";
 export default function CustomTextBox(props) {
 	const dispatch = useDispatch();
 
-	const [text, setText] = useState("");
+	const [text, setText] = props.isNumber ? useState(0) : useState("");
 	// Fixes issue #36
 	// https://github.com/PatheticMustan/ScoutingApp2019/issues/36#issuecomment-667728272
-	const [watchdog, bark] = useState("");
+	const [watchdog, bark] = props.isNumber ? useState(0) : useState("");
 
 	// set default value
 	dispatch(setDefault([props.id, ""]));
@@ -42,12 +42,17 @@ export default function CustomTextBox(props) {
 			 * So we can kinda subtract the two. Now, we can check if loadMatch happened!
 			 * We can check this with (watchdog !== reduxText)
 			 **/
+
 			if (watchdog !== reduxText) {
 				setText(reduxText);
+
+				// Prevents rubber banding (issue #2)
+				bark(text);
 			} else {
 				if (reduxText !== text) {
-					bark(text);
-					dispatch(setKeyPair([props.id, text]));
+					// Ternaries so that if the value inside incrementer input fields is completely deleted, it is stored as 0
+					text === "" ? bark(0) : bark(text);
+					text === "" ? dispatch(setKeyPair([props.id, 0])) : dispatch(setKeyPair([props.id, text]));
 				}
 			}
 		}, 500);
@@ -59,7 +64,7 @@ export default function CustomTextBox(props) {
 	return (
 		<View style={{
 			width: props.width,
-			height: props.height || 40
+			height: props.height || 40,
 		}}>
 			<TextInput
 				keyboardType={props.keyboardType}
@@ -70,14 +75,20 @@ export default function CustomTextBox(props) {
 				value={text}
 				style={{
 					flex: 1,
-					padding: 10,
+					padding: props.padding != null ? props.padding : 10,
+					paddingLeft: props.max == null && props.isNumber ? 10 : 7,
 					backgroundColor: (props.backgroundColor ? props.backgroundColor : ScoutingColors.white),
 					borderColor: ScoutingColors.doveGray,
 					borderWidth: StyleSheet.hairlineWidth,
-					borderRadius: (props.borderRadius ? props.borderRadius : props.height / 5)
+					borderRadius: (props.borderRadius ? props.borderRadius : props.height / 5),
+					fontSize: props.fontSize
 				}}
 				{...props.options}
-				onChangeText={text => setText(text)}
+				onChangeText={newText =>
+					props.isNumber && newText !== ""
+						? !isNaN(parseInt(newText)) ? setText(parseInt(newText)) : setText(text)
+						: setText(newText)
+				}
 			/>
 		</View>
 	);
