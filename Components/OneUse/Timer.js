@@ -22,13 +22,11 @@ export default function Timer(props) {
 		
 	useEffect(() => {
 		const timerInterval = setInterval(() => {
-			alert(2);
 			if (isEnabled) setSeconds(oldSeconds => oldSeconds + 1);
 		}, 1000);
 
 		// callback when isEnabled ends
 		return () => {
-			alert(1);
 			clearInterval(timerInterval);
 			dispatch(setKeyPair([props.id, seconds]));
 		};
