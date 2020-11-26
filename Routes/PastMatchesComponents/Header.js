@@ -85,7 +85,7 @@ export default function Header() {
 	return (
 		<View style={[
 			styles.flex,
-			{ backgroundColor: selectedTeam == 1 ? ScoutingColors.red : ScoutingColors.lightBlue }
+			{ backgroundColor: selectedTeam == 1 ? ScoutingColors.lightRed : ScoutingColors.lightBlue }
 		]}>
 			<Text style={styles.headerText}>2020 - Infinite Recharge{"\n"}</Text>
 

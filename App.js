@@ -55,10 +55,7 @@ function MyTabs() {
 	);
 }
 
-// Async
-// Storage
-// Setter
-// ;)
+// Async Storage Setter ;)
 // The ASS handles stuff like setting matches to [] if empty, and syncing AsyncStorage and state.matches
 function ASS() {
 	const dispatch = useDispatch();
