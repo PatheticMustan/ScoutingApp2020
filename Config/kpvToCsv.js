@@ -91,13 +91,13 @@ export default function kpvToCsv(matches) {
 		vf: kpv => kpv["BallsScored"]
 	}, {
 		name: "Climb Height",
-		vf: kpv => kpv["EndgameType"] === 1 ? kpv["ClimbHeight"] : ""
+		vf: kpv => kpv["ClimbHeight"]
 	}, {
 		name: "Climb Position",
-		vf: kpv => kpv["EndgameType"] === 1 ? kpv["ClimbPosition"] : ""
+		vf: kpv => kpv["ClimbPosition"]
 	}, {
 		name: "Time",
-		vf: kpv => kpv["EndgameType"] === 1 ? kpv["Time"] : ""
+		vf: kpv => kpv["Time"]
 	}, {
 		name: "Endgame Comments",
 		vf: kpv => kpv["EndgameComments"]
