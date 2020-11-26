@@ -28,7 +28,9 @@ export default class MatchInfoContainer extends React.Component {
 
 						<View style={styles.inputContainer}>
 							<Text style={styles.bold}>Match Number: Qualification # </Text>
-							<Incrementer id="MatchNumber" />
+							<Incrementer id="MatchNumber">
+								<CustomTextBox id="MatchNumber" placeholder="2638" keyboardType="numeric" width={40} height={40} />
+							</Incrementer>
 						</View>
 
 						<View style={styles.inputContainer}>

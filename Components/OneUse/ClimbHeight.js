@@ -7,7 +7,7 @@ import {
 	Image
 } from "react-native";
 
-import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
+import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
 import ScoutingColors from "../../Config/ScoutingColors";
@@ -18,8 +18,7 @@ export default function ClimbHeight(props) {
 	// set default value
 	dispatch(setDefault([props.id, 0]));
 	// get value from store
-	const kpv = useSelector(selectData);
-	const selectedIndex = kpv.find(v => v[0] === props.id)[1];
+	const selectedIndex = useSelector(selectID(props.id));
 
 	const data = [
 		["Low", require("../../Assets/EndLow.png")],
@@ -28,29 +27,19 @@ export default function ClimbHeight(props) {
 	];
 
 	return (
-		<View style={{
-			flex: 1,
-			flexDirection: "row",
-			justifyContent: "space-around"
-		}}>
-			{
-				data.map((v, i) =>
-					<Pressable
-						key={data[i][0]}
-						onPress={() => {
-							dispatch(setKeyPair([props.id, i]));
-						}}
-					>
-						<View style={[
-							styles.container,
-							{ backgroundColor: (selectedIndex === i ? props.bgc : ScoutingColors.white) }
-						]}>
-							<Image source={data[i][1]} style={styles.image} />
-							<Text style={{ textAlign: "center" }}>{data[i][0]}</Text>
-						</View>
-					</Pressable>
-				)
-			}
+		<View style={{ alignItems: "center" }}>
+			<Text style={{ fontSize: 20, fontWeight: "bold" }}>Initial Climb Height</Text>
+
+			<View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+				{data.map((row, index) =>
+					<View key={row[0]} style={[styles.container, { backgroundColor: (selectedIndex === index ? props.bgc : ScoutingColors.white) }]}>
+						<Pressable onPress={() => {dispatch(setKeyPair([props.id, index]))}}>
+							<Image source={row[1]} style={styles.image} />
+							<Text style={{ textAlign: "center" }}>{row[0]}</Text>
+						</Pressable>
+					</View>
+				)}
+			</View>
 		</View>
 	);
 }
@@ -59,7 +48,6 @@ const styles = StyleSheet.create({
 	container: {
 		borderRadius: 10,
 		borderWidth: StyleSheet.hairlineWidth,
-		flexDirection: "column",
 		justifyContent: "center",
 		margin: 10
 	},

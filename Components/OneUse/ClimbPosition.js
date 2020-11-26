@@ -6,18 +6,15 @@ import {
 	Pressable,
 	ImageBackground
 } from "react-native";
-import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
+import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import ScoutingColors from "../../Config/ScoutingColors.js";
 
 export default function ClimbPosition(props) {
 	const dispatch = useDispatch();
 
-	// set default value
 	dispatch(setDefault([props.id, 0]));
-	// get value from store
-	const kpv = useSelector(selectData);
-	const selectedIndex = kpv.find(v => v[0] === props.id)[1];
+	const selectedIndex = useSelector(selectID(props.id));
 
 	// all possible options.
 	// [name, flexSpace]
@@ -28,20 +25,15 @@ export default function ClimbPosition(props) {
 	];
 
 	return (
-		<View>
+		<View style={{ alignItems: "center" }}>
+			<Text style={{ fontWeight: "bold", fontSize: 20 }}>Climb Position</Text>
+
 			<ImageBackground source={require("../../Assets/ClimbPosition.png")} style={{ width: 600, height: 300 }}>
 				<View style={styles.container}>
 					{
 						data.map((v, i) =>
-							<View style={{ flex: data[i][1] }} key={"ClimbPositionView" + i}>
-								<Pressable
-									key={"ClimbPositionButton" + i}
-									onPress={() => {
-										const r = i;
-										// dispatch to redux and set state
-										dispatch(setKeyPair([props.id, r]));
-									}}
-								>
+							<View style={{ flex: data[i][1], backgroundColor: "orange" }} key={data[i][0]}>
+								<Pressable onPress={() => {dispatch(setKeyPair([props.id, i]))}}>
 									<View style={{
 										justifyContent: "center",
 										borderRadius: 10,

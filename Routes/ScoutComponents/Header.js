@@ -4,6 +4,7 @@ import {
 	Text,
 	View,
 	Alert,
+	Platform
 } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,7 +15,7 @@ import RadioButton from "../../Components/Buttons/RadioButton.js";
 import Link from "../../Components/Utility/Link.js";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setDefault, freshStart, selectData } from "../../Redux/Features/dataSlice.js";
+import { setDefault, freshStart, selectData, selectID } from "../../Redux/Features/dataSlice.js";
 import { writeMatch } from "../../Redux/Features/matchSlice.js";
 import kpvToCsv from "../../Config/kpvToCsv.js";
 
@@ -29,7 +30,7 @@ export default function Header() {
 	// since this isn't an input, no need to set default.
 	// get value from store
 	const kpv = useSelector(selectData);
-	const selectedTeam = kpv.find(v => v[0] === arenaID)[1];
+	const selectedTeam = useSelector(selectID(arenaID));
 
 	function reset() {
 		// alert("Everyone needs a fresh start. Why not now?");
@@ -48,7 +49,7 @@ export default function Header() {
 		// fun fact, kpv is short for KeyPairValue, because it's filled with [key, value]
 		// matchKey is a unique identifier for a match. Right now I could have Team
 		const matchKey = ["Team", "TeamNumber", "MatchNumber", "MatchType", "Scouters"]
-			.map(k => [k, kpv.find(v => v[0] === k)[1]]); // "Team" --> ["Team", value]
+			.map(k => [k, kpv[k]]); // "Team" --> ["Team", value]
 
 		// if a single one of them is ""...
 		if (matchKey.some(v => v[1] === "")) {
@@ -81,7 +82,7 @@ export default function Header() {
 			// now update matches in redux
 			dispatch(writeMatch(final));
 			// "hey you saved a match lmao"
-			alert("Saved Match #" + kpv.find(v => v[0] === "MatchNumber")[1]);
+			alert("Saved Match #" + kpv["MatchNumber"]);
 
 			// now we're finished
 			successCallback(final);
@@ -116,17 +117,39 @@ export default function Header() {
 		save(final => {
 			if (final === undefined) return;
 
-			console.log("REMINDER: Sharing doesn't work on web!");
-			const path = "./data.csv";
-
 			const output = kpvToCsv([final]);
 			console.log(output);
 
-			FileSystem.writeAsStringAsync(FileSystem.documentDirectory + path, output, { encoding: FileSystem.EncodingType.UTF8 });
-			// share the new csv file we just made
-			Sharing.shareAsync(FileSystem.documentDirectory + path);
+			Platform.OS == "web"
+				? webExport(output, "data.csv")
+				: mobileExport(output);
 		});
+	}
 
+	function webExport(content, fileName) {
+		let a = document.createElement("a");
+		let mimeType = "text/csv;encoding:utf-8";
+
+		// Thanks, stackoverflow
+		if (URL && "download" in a) {
+			a.href = URL.createObjectURL(new Blob([content], {
+				type: mimeType
+			}));
+			a.setAttribute("download", fileName);
+			document.body.appendChild(a);
+			a.click();
+			document.body.removeChild(a);
+		} else {
+			location.href = "data:application/octet-stream," + encodeURIComponent(content);
+		}
+	}
+
+	function mobileExport(output) {
+		const path = "./data.csv";
+
+		FileSystem.writeAsStringAsync(FileSystem.documentDirectory + path, output, { encoding: FileSystem.EncodingType.UTF8 });
+		// share the new csv file we just made
+		Sharing.shareAsync(FileSystem.documentDirectory + path);
 	}
 
 	return (

@@ -11,13 +11,13 @@ export const matchSlice = createSlice({
 			// [key, payload]
 			// Tracer: ESCOURT THE PAYLOAD!
 
-			const [key, kpv] = action.payload;
+			const [matchKey, kpv] = action.payload;
 
-			if (!(typeof key === "string"))          console.log("WARNING! Expected key to be string.");
-			if (!(kpv instanceof Array))             console.log("WARNING! Expected match to be array.");
-			if (!kpv.every(v => v instanceof Array)) console.log("WARNING! Expected each item to be an array.");
+			if (!(typeof matchKey === "string"))					console.log(`WARNING! Expected key to be string, instead got ${typeof matchKey}.`);
+			if (!(kpv instanceof Array))							console.log(`WARNING! Expected match to be object, instead got ${typeof kpv}.`);
+			if (!Object.values(kpv).every(v => v instanceof Array))	console.log(`WARNING! Expected each item to be an array, instead got ${typeof kpv[0]}.`);
 
-			const mki = state.matches.findIndex(v => v && (v[0] === key));
+			const mki = state.matches.findIndex(v => v && (v[0] === matchKey));
 
 			if (mki === -1) {
 				// if the match key is not found
@@ -50,6 +50,6 @@ export const { writeMatch, importMatches, resetMatches } = matchSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectData = state => state.matches.matches;
+export const selectMatches = state => state.matches.matches;
 
 export default matchSlice.reducer;

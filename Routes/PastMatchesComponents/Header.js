@@ -2,7 +2,8 @@ import React from "react";
 import {
 	StyleSheet,
 	Text,
-	View
+	View,
+	Platform
 } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -12,9 +13,9 @@ import Link from "../../Components/Utility/Link.js";
 import kpvToCsv from "../../Config/kpvToCsv.js";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setDefault, selectData } from "../../Redux/Features/dataSlice.js";
+import { setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 
-import { selectData as matchSelectData } from "../../Redux/Features/matchSlice.js";
+import { selectMatches } from "../../Redux/Features/matchSlice.js";
 
 import { resetMatches } from "../../Redux/Features/matchSlice.js";
 import { FileSystem } from "react-native-unimodules";
@@ -24,14 +25,13 @@ export default function Header() {
 	const dispatch = useDispatch();
 	const arenaID = "Team";
 
-	const matches = useSelector(matchSelectData);
+	const matches = useSelector(selectMatches);
 
 	// set default value
 	dispatch(setDefault([arenaID, 0]));
 	// since this isn't an input, no need to set default.
 	// get value from store
-	const kpv = useSelector(selectData);
-	const selectedTeam = kpv.find(v => v[0] === arenaID)[1];
+	const selectedTeam = useSelector(selectID(arenaID));
 
 	const clickResetMatches = () => {
 		AsyncStorage.removeItem("matches");
@@ -43,19 +43,44 @@ export default function Header() {
 	};
 
 	const clickExportAllMatches = () => {
-		// sharing doesn't work on web.
-		console.log("REMINDER: Sharing doesn't work on web!");
-		const path = "./data.csv";
-
 		// write new csv file
 		console.log(matches);
 		const output = kpvToCsv(matches);
 		console.log(output);
 
+		Platform.OS == "web"
+			? webExport(output, "data.csv")
+			: mobileExport(output);
+	};
+
+
+	function webExport(content, fileName) {
+		console.log("NAY");
+		let a = document.createElement("a"); 
+		let mimeType = "text/csv;encoding:utf-8";
+
+		// Thanks, stackoverflow
+		if (URL && "download" in a) {
+			a.href = URL.createObjectURL(new Blob([content], {
+				type: mimeType
+			}));
+			a.setAttribute("download", fileName);
+			document.body.appendChild(a);
+			a.click();
+			document.body.removeChild(a);
+		} else {
+			location.href = "data:application/octet-stream," + encodeURIComponent(content);
+		}
+	}
+
+	function mobileExport(output) {
+		console.log("YAY");
+		const path = "./data.csv";
+
 		FileSystem.writeAsStringAsync(FileSystem.documentDirectory + path, output, { encoding: FileSystem.EncodingType.UTF8 });
 		// share the new csv file we just made
 		Sharing.shareAsync(FileSystem.documentDirectory + path);
-	};
+	}
 
 	return (
 		<View style={[styles.headerStyle, { backgroundColor: selectedTeam == 1 ? ScoutingColors.red : ScoutingColors.lightBlue }]}>

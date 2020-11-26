@@ -5,7 +5,7 @@ import {
 	StyleSheet
 } from "react-native";
 
-import { setKeyPair, setDefault, selectData } from "../../Redux/Features/dataSlice.js";
+import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
 import ScoutingColors from "../../Config/ScoutingColors";
@@ -22,8 +22,7 @@ export default function CustomTextBox(props) {
 	dispatch(setDefault([props.id, ""]));
 
 	// get value from store
-	const kpv = useSelector(selectData);
-	const reduxText = kpv.find(v => v[0] === props.id)[1];
+	const reduxText = useSelector(selectID(props.id));
 
 	useEffect(() => {
 		const interval = setInterval(() => {

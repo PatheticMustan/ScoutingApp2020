@@ -2,31 +2,24 @@
 
 // matches: KPV[]
 export default function kpvToCsv(matches) {
-	const find = (kpv, id) => {
-		const val = kpv.find(v => v[0] === id);
-
-		if (val === undefined) throw new Error(`Cannot find value ${id} in kpv.`);
-		return val[1];
-	};
-
 	// the holy grail contains all the data for converting the kpv's to one giant csv file
 	const theHolyGrail = [{
 		name: "Team Number",
-		vf: kpv => find(kpv, "TeamNumber")
+		vf: kpv => kpv["TeamNumber"]
 	}, {
 		name: "Match Number",
-		vf: kpv => find(kpv, "MatchNumber")
+		vf: kpv => kpv["MatchNumber"]
 	}, {
 		name: "Fits Under Trench?",
-		vf: kpv => find(kpv, "FitsUnderTrench") ? "Yes" : "No"
+		vf: kpv => kpv["FitsUnderTrench"] ? "Yes" : "No"
 	}, {
 		name: "Plays Defense?",
-		vf: kpv => find(kpv, "PlaysDefense") ? "Yes" : "No"
+		vf: kpv => kpv["PlaysDefense"] ? "Yes" : "No"
 	}, {
 		name: "Penalties",
 		vf: kpv => {
-			const red = find(kpv, "RedCard");
-			const yellow = find(kpv, "YellowCard");
+			const red = kpv["RedCard"];
+			const yellow = kpv["YellowCard"];
 
 			if (red && yellow)  return "Red and Yellow";
 			if (red)            return "Red";
@@ -36,78 +29,78 @@ export default function kpvToCsv(matches) {
 		}
 	}, {
 		name: "Starting Pieces",
-		vf: kpv => find(kpv, "StartingPieces")
+		vf: kpv => kpv["StartingPieces"]
 	}, {
 		name: "Line Position",
-		vf: kpv => find(kpv, "LinePosition")
+		vf: kpv => kpv["LinePosition"]
 	}, {
 		name: "Crosses Initiation Line?",
-		vf: kpv => find(kpv, "CrossesInitiationLine") ? "Yes" : "No"
+		vf: kpv => kpv["CrossesInitiationLine"] ? "Yes" : "No"
 	}, {
 		name: "Auto Low",
-		vf: kpv => find(kpv, "AutoLow")
+		vf: kpv => kpv["AutoLow"]
 	}, {
 		name: "Auto Outer",
-		vf: kpv => find(kpv, "AutoOuter")
+		vf: kpv => kpv["AutoOuter"]
 	}, {
 		name: "Auto Inner",
-		vf: kpv => find(kpv, "AutoInner")
+		vf: kpv => kpv["AutoInner"]
 	}, {
 		name: "Auto Missed",
-		vf: kpv => find(kpv, "AutoMissed")
+		vf: kpv => kpv["AutoMissed"]
 	}, {
 		name: "Autonomous Comments",
-		vf: kpv => find(kpv, "AutonomousComments")
+		vf: kpv => kpv["AutonomousComments"]
 	}, {
 		name: "Balls Picked Up From Loading Station",
-		vf: kpv => find(kpv, "BallsPickedUpFromLoadingStation")
+		vf: kpv => kpv["BallsPickedUpFromLoadingStation"]
 	}, {
 		name: "Balls Picked Up From Floor",
-		vf: kpv => find(kpv, "BallsPickedUpFromFloor")
+		vf: kpv => kpv["BallsPickedUpFromFloor"]
 	}, {
 		name: "Tele-Op Low",
-		vf: kpv => find(kpv, "TeleLow")
+		vf: kpv => kpv["TeleLow"]
 	}, {
 		name: "Tele-Op Outer",
-		vf: kpv => find(kpv, "TeleOuter")
+		vf: kpv => kpv["TeleOuter"]
 	}, {
 		name: "Tele-Op Inner",
-		vf: kpv => find(kpv, "TeleInner")
+		vf: kpv => kpv["TeleInner"]
 	}, {
 		name: "Tele-Op Missed",
-		vf: kpv => find(kpv, "TeleMissed")
+		vf: kpv => kpv["TeleMissed"]
 	}, {
 		name: "Shoot From",
-		vf: kpv => [find(kpv, "TargetZone"), find(kpv, "TrenchZone"), find(kpv, "Other")]
-			.filter(v => v !== undefined) // filter out undefined
+		vf: kpv => [kpv["TargetZone"]? "Target Zone" : "", kpv["TrenchZone"]? "Trench Zone" : "", kpv["Other"]? "Other" : ""]
+			.filter(v => v !== "") // filter out none
 			.join(", ") // make it look nice
 	}, {
 		name: "Rotation",
-		vf: kpv => find(kpv, "Rotation") ? "Yes" : "No"
+		vf: kpv => kpv["Rotation"] ? "Yes" : "No"
 	}, {
 		name: "Color",
-		vf: kpv => find(kpv, "Color") ? "Yes" : "No"
+		vf: kpv => kpv["Color"] ? "Yes" : "No"
 	}, {
 		name: "Teleop Comments",
-		vf: kpv => find(kpv, "TeleopComments")
+		vf: kpv => kpv["TeleopComments"]
 	}, {
 		name: "Endgame Type",
-		vf: kpv => find(kpv, "EndgameType")
+		vf: kpv => kpv["EndgameType"]
 	}, {
 		name: "Balls Scored",
-		vf: kpv => find(kpv, "BallsScored")
+		vf: kpv => kpv["BallsScored"]
 	}, {
 		name: "Climb Height",
-		vf: kpv => find(kpv, "EndgameType") === 1 ? find(kpv, "ClimbHeight") : ""
+		vf: kpv => kpv["ClimbHeight"]
 	}, {
 		name: "Climb Position",
-		vf: kpv => find(kpv, "EndgameType") === 1 ? find(kpv, "ClimbPosition") : ""
+		vf: kpv => kpv["ClimbPosition"]
 	}, {
 		name: "Time",
-		vf: kpv => find(kpv, "EndgameType") === 1 ? find(kpv, "Time") : ""
+		vf: kpv => kpv["Time"]
 	}, {
 		name: "Endgame Comments",
-		vf: kpv => find(kpv, "EndgameComments")
+		vf: kpv => kpv["EndgameComments"]
 	}];
 
 	let csv = "";
