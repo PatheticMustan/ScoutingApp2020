@@ -97,7 +97,10 @@ export default function kpvToCsv(matches) {
 		vf: kpv => kpv["ClimbPosition"]
 	}, {
 		name: "Time",
-		vf: kpv => kpv["Time"]
+		vf: kpv => {
+			const seconds = kpv["Time"];
+			return `${Math.floor(seconds / 60)}:${((seconds % 60) + "").padStart(2, "0")}`;
+		}
 	}, {
 		name: "Endgame Comments",
 		vf: kpv => kpv["EndgameComments"]

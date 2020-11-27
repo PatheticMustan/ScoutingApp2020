@@ -15,35 +15,42 @@ export default function Timer(props) {
 
 	const reduxTime = useSelector(selectID(props.id));
 
-	const [isEnabled, setEnabled] = useState(false);
+	const [intervalID, setIntervalID] = useState(0);
 	const [seconds, setSeconds] = useState(reduxTime);
 
-	
+	const handleTimerClick = () => {
+		// if the interval ID is non-zero, we have to stop the timer.
+		if (intervalID) {
+			clearInterval(intervalID);
+			setIntervalID(0);
+			dispatch(setKeyPair([props.id, seconds]));
+		} else {
+			setIntervalID(setInterval(() => {
+				setSeconds(s => s + 1);
+			}, 1000));
+		}
+	};
 		
 	useEffect(() => {
-		const timerInterval = setInterval(() => {
-			alert(2);
-			if (isEnabled) setSeconds(oldSeconds => oldSeconds + 1);
-		}, 1000);
+		alert(1);
 
 		// callback when isEnabled ends
 		return () => {
-			alert(1);
-			clearInterval(timerInterval);
+			if (intervalID) clearInterval(intervalID);
 			dispatch(setKeyPair([props.id, seconds]));
 		};
 
 		// run when isEnabled updates
-	}, [isEnabled]);
+	}, [intervalID]);
 
 	return (
 		<View style={{ flex: 1, alignItems: "center" }}>
 			<Text style={{ fontSize: 20, fontWeight: "bold" }}>Stopwatch</Text>
 
-			<Text>{(`${(seconds - (seconds % 60)) / 60}:${((seconds % 60) + "").padStart(2, "0")}`)}</Text>
+			<Text>{(`${Math.floor(seconds / 60)}:${((seconds % 60) + "").padStart(2, "0")}`)}</Text>
 			
-			<BoolButton id="TimerClicked" bgc="lime" width={160} press={() => setEnabled(v => !v)}>
-				<Text>{!isEnabled ? "Start" : "Stop"} Stopwatch</Text>
+			<BoolButton id="TimerClicked" bgc="lime" width={160} press={() => handleTimerClick()}>
+				<Text>{!intervalID ? "Start" : "Stop"} Stopwatch</Text>
 			</BoolButton>
 		</View>
 	);
